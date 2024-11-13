@@ -16,7 +16,7 @@ def run_ARMP(dic, setting, var_stats='freq', ref=False):
         AR_frequency(dic, setting)
 
     # workflow on AR metrics
-    if dic['metric_freq'];
+    if dic['metric_freq']:
         # calculate AR frequency/count metrics
         AR_metrics_bias(dic, 'metric_freq', var_stats)
 
@@ -24,17 +24,17 @@ def run_ARMP(dic, setting, var_stats='freq', ref=False):
         # calculate AR peak day metrics
         AR_metrics_bias(dic, 'metric_peak_day', var_stats)
 
-    if dic['metric_character'];
+    if dic['metric_character']:
         # calculate AR characteristics metrics
         print("run stats/blobstats.py")
         AR_character_stats_json(dic, 'metric_character')
         AR_character_bias(dic, 'metric_character')
 
-    if dic['metric_spatial_correlation'];
+    if dic['metric_spatial_correlation']:
         # calculate AR frequency spatial correlation metrics
         AR_spatial_correlation(dic, 'metric_spatial_correlation')
 
-    if dic['metric_IOU'];
+    if dic['metric_IOU']:
         # calculate IOU for specific case
         print("run app/ar_iou.py with user defined cases")
 

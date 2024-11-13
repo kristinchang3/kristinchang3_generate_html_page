@@ -1,2 +1,1 @@
-# ARMP
-Atmospheric River Metrics Package
+ARMP

@@ -1,4 +1,4 @@
-from loader import dic, setting, init_dataclass
+from .loader import dic, setting, init_dataclass
 from params.config import layout
 from lib.convention import Case, Case_clim
 from itertools import product

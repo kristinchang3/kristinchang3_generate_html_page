@@ -3,7 +3,7 @@ from app.clim_analysis import Clim_analysis
 from app.clim_metrics_bias import Clim_metrics_bias
 
 
-def run_ARMP_clim(dic, setting, var_stats='pr')
+def run_ARMP_clim(dic, setting, var_stats='pr'):
 
     if not dic['include_clim']:
         raise NameError("climate variable NOT set in config")

@@ -1,11 +1,11 @@
-from lib.convention import coords_fmt
-from lib.spatial import land_sea_mask
-from params.config import ar_freq_map, ar_map_ts, ar_count_ts
-import region_select, season_select
+from ARMP.lib.convention import coords_fmt
+from ARMP.lib.spatial import land_sea_mask
+from ARMP.params.config import ar_freq_map, ar_map_ts, ar_count_ts
+from ARMP.lib.spatial import region_select, season_select
 
 
 def init_ds(fn_list, region, mask_lndocn,
-            fn_var, **kwargs)#, lev=85000):
+            fn_var, **kwargs):  #, lev=85000):
 
     with open(fn_list, 'r') as f_tag:
 

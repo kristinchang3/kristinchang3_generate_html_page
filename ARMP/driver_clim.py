@@ -1,6 +1,6 @@
-from lib.loader import dic, setting
-from app.clim_analysis import Clim_analysis
-from app.clim_metrics_bias import Clim_metrics_bias
+from ARMP.lib.loader import dic, setting
+from ARMP.app.clim_analysis import Clim_analysis
+from ARMP.app.clim_metrics_bias import Clim_metrics_bias
 
 
 def run_ARMP_clim(dic, setting, var_stats='pr'):

@@ -6,10 +6,10 @@ def land_sea_mask(ds_reg, mask_lndocn, **kwargs):
 
     mask_land = create_land_sea_mask(ds_reg)
 
-    if mask_lndocn = 'land':
+    if mask_lndocn == 'land':
         return mask_land
 
-    if mask_lndocn = 'ocean':
+    if mask_lndocn == 'ocean':
         mask_ocean = (~mask_land.astype(bool))#.astype(int)
         return mask_ocean
 
@@ -43,7 +43,7 @@ def region_select(ds_tag, region, **kwargs):
 def dim_select(ds, fn_var, **kwargs):
     ''' drop dims other than time,lat,lon'''
 
-    if len(ds[fn_var].dims) in <= 3:
+    if len(ds[fn_var].dims) <= 3:
         return ds[fn_var]
 
 	# for data with level coords
@@ -63,30 +63,23 @@ def dim_select(ds, fn_var, **kwargs):
             else:
                 lev_dim = kwargs.get('lev_dim')
 
-			lev_coord = kwargs.get('lev_coord')
+            lev_coord = kwargs.get('lev_coord')
 
             if len(ds[fn_var].dims) == 4:
-                da = ds[fn_var]
-                    .sel({lev_dim:lev_coord})
-                    .drop_vars(dims_to_drop)
+                da = ds[fn_var].sel({lev_dim:lev_coord}).drop_vars(dims_to_drop)
 			
 			# if da has more dimensions other than lev
             else:
                 other_dims_to_drop = list(filter(lambda dim: dim!=lev_dim, dims_to_drop))
-                da = ds[fn_var]
-                    .sel({lev_dim:lev_coord})
-                    .isel({dim: 0 for dim in other_dims_to_drop})
-                    .drop_vars(dims_to_drop)
+                da = ds[fn_var].sel({lev_dim:lev_coord}).isel({dim: 0 for dim in other_dims_to_drop}).drop_vars(dims_to_drop)
 
-			return da
+            return da
 
         # if not clim_4D: drop all other dims
         else:
-            da = ds[fn_var]
-                .isel({dim: 0 for dim in dims_to_drop})
-                .drop_vars(dims_to_drop)
+            da = ds[fn_var].isel({dim: 0 for dim in dims_to_drop}).drop_vars(dims_to_drop)
 
-			return da
+            return da
 
 
 def domain_average_series(da):

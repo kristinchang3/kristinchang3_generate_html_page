@@ -34,16 +34,16 @@ def nc_in(var_name, suffix, case_name, dir_out, **kwargs):
 
 
 def read_json_file(dic, metric):
-	'''
-	access to metric results from saved json file
-	'''
-   	json_filename = "{}.json".format(metric) 
-	json_filepath = os.path.join(dic['dir_out'], json_filename)
+    """
+    access to metric results from saved json file
+    """
+    json_filename = "{}.json".format(metric)
+    json_filepath = os.path.join(dic['dir_out'], json_filename)
 
-  	with open(json_filepath, 'r') as json_file:
-    	dict_in = json.load(json_file)
+    with open(json_filepath, 'r') as json_file:
+        dict_in = json.load(json_file)
 
-	return dict_in
+    return dict_in
 
 
 def extract_dict(nested_dict, key_layers, target_key):
@@ -91,5 +91,3 @@ def extract_dict(nested_dict, key_layers, target_key):
     result_array = np.array(result).reshape([len(layer) for layer in key_layers])
 
     return result_array.squeeze()
-
-

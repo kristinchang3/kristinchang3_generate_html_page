@@ -1,12 +1,12 @@
-from io.output import nc_out 
-from io.input import case_combi
-from lib.proc import init_ds
-from lib.preprocessing import data_QAQC, data_QAQC_mf, data_QAQC_mf_xc, freq_convert
-from lib.loader import setting
-from lib.sampling import match_calendar
-from utils.regridder import regrid_coords_precision
-from lib.spatial import match_coords_precision
-from lib.spatial import domain_average_series
+from ARMP.io.output import nc_out 
+from ARMP.io.input import case_combi
+from ARMP.lib.proc import init_ds
+from ARMP.lib.preprocessing import data_QAQC, data_QAQC_mf, data_QAQC_mf_xc, freq_convert
+from ARMP.lib.loader import setting
+from ARMP.lib.sampling import match_calendar
+from ARMP.utils.regridder import regrid_coords_precision
+from ARMP.lib.spatial import match_coords_precision
+from ARMP.lib.spatial import domain_average_series
 
 
 def Clim_count(fn_list, fn_var, region, season, start_date, end_date, mask_lndocn, **kwargs):

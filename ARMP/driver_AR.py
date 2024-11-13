@@ -1,5 +1,5 @@
 from lib.loader import dic, setting
-import run_ARMP_clim
+from driver_clim import run_ARMP_clim
 from app.ar_frequency import AR_frequency
 from app.ar_metrics_bias import AR_metrics_bias
 from app.ar_character import AR_character_stats_json

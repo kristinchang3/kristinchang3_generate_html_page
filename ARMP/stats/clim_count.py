@@ -9,7 +9,7 @@ from lib.spatial import match_coords_precision
 from lib.spatial import domain_average_series
 
 
-def Clim_count(fn_list, fn_var, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs):
+def Clim_count(fn_list, fn_var, region, season, start_date, end_date, mask_lndocn, **kwargs):
     # to be developed
     pass
 

@@ -1,5 +1,5 @@
 import params.config as a
-import lib.convention import Case, Case_clim, Setting
+from lib.convention import Case, Case_clim, Setting
 
 dic = {var: getattr(a, var) for var in dir(a) if not var.startswith('__')}
 

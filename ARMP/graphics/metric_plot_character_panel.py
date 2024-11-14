@@ -1,10 +1,10 @@
 import matplotlib
 from matplotlib import pyplot as plt
-from lib.loader import dic, setting
-from lib.control import iter_list
-from utils.portrait_plot import metric_plot
-from io.input import read_json_file, extract_dict
-from utils.graphics_utils import minmax_range
+from ARMP.lib.loader import dic, setting
+from ARMP.lib.control import iter_list
+from ARMP.utils.portrait_plot import metric_plot
+from ARMP.io.input import read_json_file, extract_dict
+from ARMP.utils.graphics_utils import minmax_range
 import os
 
 

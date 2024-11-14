@@ -1,8 +1,9 @@
-from .loader import dic, setting, init_dataclass
-from params.config import layout
-from lib.convention import Case, Case_clim
+from ARMP.lib.loader import dic, setting, init_dataclass
+from ARMP.params.config import layout
+from ARMP.lib.convention import Case, Case_clim
 from itertools import product
 from dataclasses import dataclass, asdict, field, fields
+import os
 
 
 def modify_list_keys(dictionary):
@@ -84,7 +85,7 @@ def make_case(dataclass, combi, dic):
     case = init_dataclass(dataclass, dic)
     case.update(layout_dic)
 
-    if isinstance(dataclass, Case):
+    if isinstance(case, Case):
         value_list = []
         value = case_across_list(case.ARDT, dic['ARDT_list'], dic['tag_var_list'])
         value_list.append(value)
@@ -99,9 +100,9 @@ def make_case(dataclass, combi, dic):
         fn_list = os.path.join(dic['dir_in'], fn_in)
 
         case.tag_list = fn_list
-        case.fn_var_out = tag_var_out
+        case.fn_var_out = dic['tag_var_out']
 
-    elif isinstance(dataclass, Case_clim):
+    elif isinstance(case, Case_clim):
         value_list = []
         for key in list_keys:
             value = case_across_list(case.model, dic['model_list'], dic[key+'_list'])
@@ -117,7 +118,7 @@ def make_case(dataclass, combi, dic):
         fn_list = os.path.join(dic['dir_in'], fn_in)
         
         case.clim_list = fn_list
-        case.fn_var_out = clim_var_out
+        case.fn_var_out = dic['clim_var_out']
 
     value_dic = dict(zip(list_keys, value_list))
     case.update(value_dic)

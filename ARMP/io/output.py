@@ -2,7 +2,6 @@ import copy
 import json
 import os
 from itertools import product
-
 from ARMP.lib.control import iter_list
 
 
@@ -102,6 +101,7 @@ def create_json_file(dic):
             json_dict = create_json_dict(dic)
             json_filename = "{}.json".format(metric)
             json_filepath = os.path.join(dic["dir_out"], json_filename)
+            print("json_filepath = ", json_filepath)
 
             with open(json_filepath, "w") as json_file:
                 json.dump(json_dict, json_file, indent=4)

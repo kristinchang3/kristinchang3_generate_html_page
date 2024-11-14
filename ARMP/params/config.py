@@ -1,3 +1,5 @@
+from pathlib import Path
+
 json_structure = ['REF', 'RESULTS']
 layout = ("model", "ARDT", "region", "season")
 
@@ -43,9 +45,9 @@ mask_lndocn = None # 'ocean', 'land'
 #unit_target
 
 
-dir_in = 'demo/data'
-dir_out = 'output'
-dir_fig = 'figures'
+dir_in = Path(__file__).parent.parent/'data'
+dir_out = Path(__file__).parent.parent/'output'
+dir_fig = Path(__file__).parent.parent/'figure'
 
 
 debug = False

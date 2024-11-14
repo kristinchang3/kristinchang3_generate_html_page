@@ -1,0 +1,49 @@
+{
+    "REF": {},
+    "RESULTS": {
+        "CanESM2": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {},
+                    "JJA": {}
+                },
+                "New_Zealand": {
+                    "NDJFM": {},
+                    "JJA": {}
+                }
+            },
+            "TECA": {
+                "California": {
+                    "NDJFM": {},
+                    "JJA": {}
+                },
+                "New_Zealand": {
+                    "NDJFM": {},
+                    "JJA": {}
+                }
+            }
+        },
+        "CCSM4": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {},
+                    "JJA": {}
+                },
+                "New_Zealand": {
+                    "NDJFM": {},
+                    "JJA": {}
+                }
+            },
+            "TECA": {
+                "California": {
+                    "NDJFM": {},
+                    "JJA": {}
+                },
+                "New_Zealand": {
+                    "NDJFM": {},
+                    "JJA": {}
+                }
+            }
+        }
+    }
+}

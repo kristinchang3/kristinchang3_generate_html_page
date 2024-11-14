@@ -1,10 +1,10 @@
-from lib.loader import dic, setting
-from lib.convention import Case_clim
+from ARMP.lib.loader import dic, setting
+from ARMP.lib.convention import Case_clim
 from itertools import product
-from lib.control import make_case, iter_list
-from stats.clim_count import Clim_count_mf
-from stats.clim_stats import Clim_stats
-from io.output import create_json_file, write_json_file
+from ARMP.lib.control import make_case, iter_list
+from ARMP.stats.clim_count import Clim_count_mf
+from ARMP.stats.clim_stats import Clim_stats
+from ARMP.io.output import create_json_file, write_json_file
 
 
 def Clim_analysis(dic, setting):

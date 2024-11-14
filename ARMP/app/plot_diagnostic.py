@@ -1,4 +1,4 @@
-from lib.loader import dic, setting
+from ARMP.lib.loader import dic, setting
 
 
 def plot_diagnostic(dic):

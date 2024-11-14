@@ -1,12 +1,12 @@
-from lib.loader import dic
-from lib.control import iter_list
-from lib.convention import lon_swap
-from utils.portrait_plot import metric_plot
-from utils.graphics_utils import minmax_range
-from io.input import read_json_file, extract_dict
+from ARMP.lib.loader import dic
+from ARMP.lib.control import iter_list
+from ARMP.lib.convention import lon_swap
+from ARMP.utils.portrait_plot import metric_plot
+from ARMP.utils.graphics_utils import minmax_range
+from ARMP.io.input import read_json_file, extract_dict
 from matplotlib import pyplot as plt
-from app.ar_character import load_blobstats
-from io.printting import str_print
+from ARMP.app.ar_character import load_blobstats
+from ARMP.io.printting import str_print
 import os
 
 

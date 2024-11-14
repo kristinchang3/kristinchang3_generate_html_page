@@ -39,9 +39,8 @@ def peak_day_stats(da_occur_ts, dic):
         return peak
     
     else:
-
-    clim_std = occur_ts_grp.std(dim='time')
-    clim = [list(occur_ts_grp)[k][1].values for k in range(len(occur_ts_grp))] # clim[k] are dots in histogram
+        clim_std = occur_ts_grp.std(dim='time')
+        clim = [list(occur_ts_grp)[k][1].values for k in range(len(occur_ts_grp))] # clim[k] are dots in histogram
 
     return peak, clim_mean, clim_std, clim
 

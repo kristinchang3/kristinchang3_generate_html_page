@@ -1,6 +1,6 @@
-from lib.loader import dic, setting
-from metrics.iou import iou
-from io.input import nc_in
+from ARMP.lib.loader import dic, setting
+from ARMP.metrics.iou import iou
+from ARMP.io.input import nc_in
 
 
 def AR_IOU(dic, case_name, case_name_ref):

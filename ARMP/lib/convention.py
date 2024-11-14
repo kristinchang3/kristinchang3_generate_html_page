@@ -1,6 +1,6 @@
 ''' preprocessing, formatting and standardizing input data'''
 from dataclasses import dataclass, asdict, field, fields
-from params.region_def import domain
+from ARMP.params.region_def import domain
 
 
 @dataclass

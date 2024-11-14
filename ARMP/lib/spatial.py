@@ -1,4 +1,4 @@
-from utils.landsea_mask import create_land_sea_mask 
+from ARMP.utils.landsea_mask import create_land_sea_mask 
 import numpy as np
 
 def land_sea_mask(ds_reg, mask_lndocn, **kwargs):

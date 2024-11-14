@@ -1,10 +1,10 @@
-from io.output import nc_out 
-from lib.proc import init_ds
-from lib.preprocessing import data_QAQC, data_QAQC_mf, freq_convert
-from lib.loader import setting
+from ARMP.io.output import nc_out 
+from ARMP.lib.proc import init_ds
+from ARMP.lib.preprocessing import data_QAQC, data_QAQC_mf, freq_convert
+from ARMP.lib.loader import setting
 
 
-def LFAR_count(fn_list, fn_var, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs):
+def LFAR_count(fn_list, fn_var, region, season, start_date, end_date, mask_lndocn, **kwargs):
 
     globals().update(**kwargs)
 

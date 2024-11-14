@@ -1,8 +1,8 @@
 import numpy as np
 import xarray as xr
 import xcdat as xc
-from lib.spatial import dim_select, region_select, apply_mask
-from lib.convention import Case, Case_clim, Setting
+from ARMP.lib.spatial import dim_select, region_select, apply_mask
+from ARMP.lib.convention import Case, Case_clim, Setting
 
 
 def freq_convert(da, fn_freq, target_freq, **kwargs):
@@ -53,7 +53,7 @@ def data_QAQC(fn, mask_reg, region, season, fn_var,
 
     #da_lf = apply_mask(da, mask=mask_lndocn)
     #if tag_var:
-    if 'tag_var' in kwargs
+    if 'tag_var' in kwargs:
     #if isinstance(case, Case):
     #if hasattr(case, 'tag_var'):
         da_lf = xr.apply_ufunc(np.logical_and, da, mask_reg)
@@ -78,7 +78,7 @@ def data_QAQC_mf(fn_list, region, season, fn_var, start_date, end_date, mask_lnd
     da = da.persist()
 
     #if tag_var:
-    if 'tag_var' in kwargs
+    if 'tag_var' in kwargs:
     #if isinstance(case, Case):
     #if hasattr(case, 'tag_var'):
         da_lf = apply_mask(da, mask_lndocn, **kwargs)
@@ -96,7 +96,7 @@ def data_QAQC_mf_xc(fn_list, region, season, fn_var, start_date, end_date, mask_
     ds_tag_reg_tm_sn = season_select(ds_tag_reg_tm, season, **kwargs)
     da = dim_select(ds_tag_reg_tm_sn, fn_var, **kwargs)
     da = da.persist()
-    if 'tag_var' in kwargs
+    if 'tag_var' in kwargs:
         da_lf = apply_mask(da, mask_lndocn, **kwargs)
 
     return da_lf

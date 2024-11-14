@@ -1,11 +1,11 @@
-from lib.loader import dic, setting
-from lib.convention import Case
-from io.input import read_json_file
-from io.output import update_dict_ref, update_json_file
-from io.printting import str_print, str_fn
+from ARMP.lib.loader import dic, setting
+from ARMP.lib.convention import Case
+from ARMP.io.input import read_json_file
+from ARMP.io.output import update_dict_ref, update_json_file
+from ARMP.io.printting import str_print, str_fn
 from itertools import product
-from lib.control import iter_list, iter_list_ref
-from lib.spatial import match_coords_precision 
+from ARMP.lib.control import iter_list, iter_list_ref
+from ARMP.lib.spatial import match_coords_precision 
 import copy
 import os
 from xcdat.regridder import regrid2

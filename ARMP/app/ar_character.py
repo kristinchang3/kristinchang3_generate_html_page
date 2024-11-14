@@ -1,7 +1,7 @@
-from lib.loader import dic, setting
-from io.input import read_json_file
-from io.output import update_dict_ref, update_json_file, update_json_ref, write_json_file 
-from lib.control import iter_list, iter_list_ref
+from ARMP.lib.loader import dic, setting
+from ARMP.io.input import read_json_file
+from ARMP.io.output import update_dict_ref, update_json_file, update_json_ref, write_json_file 
+from ARMP.lib.control import iter_list, iter_list_ref
 from itertools import product
 import os
 import copy
@@ -67,7 +67,7 @@ def AR_character_stats_json(dic, metric):
 
 
 
-if __name__ == "__main__"
+if __name__ == "__main__":
 
     float_formatter = "{:.2f}".format
     np.set_printoptions(formatter={'float_kind':float_formatter})

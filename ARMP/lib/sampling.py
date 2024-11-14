@@ -1,8 +1,8 @@
 import xarray as xr
 import numpy as np
 import cftime
-from lib.convention import Case, Case_clim
-from lib.loader import setting
+from ARMP.lib.convention import Case, Case_clim
+from ARMP.lib.loader import setting
 
 
 def detect_calendar(da):
@@ -98,9 +98,9 @@ def find_common_times(da1, da2):
         return da1, da2
 
     else:
-    # Select the data with common timestamps
-    da1_common = da1.sel(time=common_times)
-    da2_common = da2.sel(time=common_times)
+        # Select the data with common timestamps
+        da1_common = da1.sel(time=common_times)
+        da2_common = da2.sel(time=common_times)
 
     return da1_common, da2_common
 

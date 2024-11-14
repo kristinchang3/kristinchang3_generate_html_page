@@ -1,10 +1,10 @@
-from lib.loader import dic, setting
+from ARMP.lib.loader import dic, setting
 from driver_clim import run_ARMP_clim
-from app.ar_frequency import AR_frequency
-from app.ar_metrics_bias import AR_metrics_bias
-from app.ar_character import AR_character_stats_json
-from app.ar_metrics_character_bias import AR_character_bias
-from app.ar_metrics_spatial_correlation import AR_spatial_correlation
+from ARMP.app.ar_frequency import AR_frequency
+from ARMP.app.ar_metrics_bias import AR_metrics_bias
+from ARMP.app.ar_character import AR_character_stats_json
+from ARMP.app.ar_metrics_character_bias import AR_character_bias
+from ARMP.app.ar_metrics_spatial_correlation import AR_spatial_correlation
 
 
 def run_ARMP(dic, setting, var_stats='freq', ref=False):

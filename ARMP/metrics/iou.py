@@ -1,5 +1,5 @@
 import numpy as np
-from lib.sampling import find_common_times
+from ARMP.lib.sampling import find_common_times
 
 
 def iou(da1, da2):

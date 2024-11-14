@@ -1,11 +1,11 @@
 from matplotlib import pyplot as plt
 matplotlib.use('Agg')
-from lib.loader import dic, setting
-from io.input import read_json_file
-from io.output import update_dict_ref
-from io.printting import str_print, str_fn
+from ARMP.lib.loader import dic, setting
+from ARMP.io.input import read_json_file
+from ARMP.io.output import update_dict_ref
+from ARMP.io.printting import str_print, str_fn
 from itertools import product
-from lib.control import iter_list, iter_list_ref
+from ARMP.lib.control import iter_list, iter_list_ref
 import os
 
 

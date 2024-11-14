@@ -2,6 +2,9 @@ name: ARMP_env
 channels:
   - conda-forge
 dependencies:
+  # ==================
+  # Base
+  # ==================
   - python=3.10
   - numpy
   - pandas
@@ -11,3 +14,7 @@ dependencies:
   - collections
   - dataclasses
   - regionmask
+  # ==================
+  # Testing
+  # ==================
+  - pre_commit=3.2.2

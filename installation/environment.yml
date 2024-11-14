@@ -11,10 +11,10 @@ dependencies:
   - xarray
   - xcdat
   - eofs
-  - collections
+  - matplotlib
   - dataclasses
   - regionmask
   # ==================
   # Testing
   # ==================
-  - pre_commit=3.2.2
+  - pre_commit

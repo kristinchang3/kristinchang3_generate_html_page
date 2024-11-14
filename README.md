@@ -1,8 +1,15 @@
 # Atmospheric River Metrics Package (ARMP)
 
-## Dependency
+## Key Dependencies
 
-- PCMDI Metrics Package (https://github.com/PCMDI/pcmdi_metrics)
+- xarray
+- xcdat
+- eofs
+- numpy
+- regionmask
+- matplotlib
+
+(See [`environment.yml`](ARMP/blob/update_readme/installation/environment.yml) for details.)
 
 ## Reference 
 

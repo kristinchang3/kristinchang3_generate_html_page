@@ -13,7 +13,7 @@ Dong, B., P. Ullrich, J. Lee, P. Gleckler, K. Chang, T. A. O’Brien, 2024: Eval
 - regionmask
 - matplotlib
 
-(See [`environment.yml`](ARMP/blob/update_readme/installation/environment.yml) for details.)
+(See [`environment.yml`](installation/environment.yml) for details.)
 
 ## Acknowledgement
 

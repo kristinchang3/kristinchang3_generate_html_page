@@ -4,6 +4,11 @@ setup(
     name='ARMP',
     version='0.1',
     packages=find_packages(),
+    package_data={
+        'ARMP': ['ARMP/data/.keep'],
+        'ARMP': ['ARMP/output/.keep'],
+        'ARMP': ['ARMP/figure/.keep'],
+    },
     include_package_data=True,
     install_requires=[],
     entry_points={

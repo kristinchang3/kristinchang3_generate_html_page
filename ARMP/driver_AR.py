@@ -30,17 +30,17 @@ def run_ARMP(dic, setting, var_stats='freq', ref=False):
         AR_character_stats_json(dic, 'metric_character')
         AR_character_bias(dic, 'metric_character')
 
-    if dic['metric_spatial_correlation']:
+    if dic['metric_spatial_corr']:
         # calculate AR frequency spatial correlation metrics
         AR_spatial_correlation(dic, 'metric_spatial_correlation')
 
-    if dic['metric_IOU']:
+    if dic['metric_iou']:
         # calculate IOU for specific case
         print("run app/ar_iou.py with user defined cases")
 
     if dic['include_clim']:
         # calculate climate metrics
-        run_ARMP_clim(dic, setting, var_stats='pr')
+        run_ARMP_clim(dic, setting, var_stats='mean')
 
     # make metrics and diagnostics plots
     if dic['make_plot']:

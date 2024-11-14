@@ -1,7 +1,9 @@
 from typing import Union
+
 import regionmask
 import xarray as xr
 import xcdat as xc
+
 
 def create_land_sea_mask(
     obj: Union[xr.Dataset, xr.DataArray],
@@ -56,6 +58,4 @@ def create_land_sea_mask(
         # Convert the boolean land-sea mask to a 1/0 mask
         land_sea_mask = xr.where(land_sea_mask, 0, 1)
 
-
     return land_sea_mask
-

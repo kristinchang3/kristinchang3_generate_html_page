@@ -1,7 +1,7 @@
-#load nc_in freq_reg_mp 
+# load nc_in freq_reg_mp
 
-#eof NE
+# eof NE
 
-#corr
+# corr
 
-#json - corr, pval
+# json - corr, pval

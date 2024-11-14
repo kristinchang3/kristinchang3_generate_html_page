@@ -1,9 +1,8 @@
 import sys
+
 import matplotlib
-import matplotlib.collections as collections
 import matplotlib.pyplot as plt
 import numpy as np
-
 
 
 def metric_plot(
@@ -177,7 +176,6 @@ def metric_plot(
                 fontsize=annotate_fontsize,
             )
 
-
     # X-axis tick labels
     if xaxis_tick_labels_top_and_bottom:
         # additional x-axis tick labels
@@ -237,7 +235,6 @@ def metric_plot(
 
     if box_as_square:
         ax.set_aspect("equal")
-
 
     print("im = ", im)
     if not colorbar_off:

@@ -30,7 +30,7 @@
 #
 #        projection0=ccrs.PlateCarree()
 #        projection=ccrs.PlateCarree(central_longitude=180)
-#        
+#
 #        if region in ['NPacific','SPacific']:
 #            projection = projection
 #        else:
@@ -64,7 +64,7 @@
 #        gl.top_labels, gl.right_labels = False, False
 #        gl.xlocator = mticker.FixedLocator(range(-180, 181, 30))
 #        gl.xformatter, gl.yformatter = LongitudeFormatter(), LatitudeFormatter()
-#        
+#
 #        ax1.text(0.95, 0.1, f'{chr(97 + 0 + label_offset)}', transform=ax1.transAxes, ha='right', va='bottom', fontsize=15)#, fontweight='bold')
 #
 #        plt.subplots_adjust(hspace=0.55)
@@ -78,12 +78,12 @@
 #        PCM=ax2.contourf(spatial_count.lon, spatial_count.lat, spatial_count_frequency, transform=projection0, cmap="rainbow", levels=level1)
 #        cbar = plt.colorbar(PCM, ax=ax2, orientation='horizontal', pad=0.1,format="%.2f")
 #        cbar.remove()
-#        
+#
 #        gl = ax2.gridlines(draw_labels=True, crs=ccrs.PlateCarree(),linewidth=0)
 #        gl.top_labels, gl.right_labels = False, False
 #        gl.xlocator = mticker.FixedLocator(range(-180, 181, 30))
 #        gl.xformatter, gl.yformatter = LongitudeFormatter(), LatitudeFormatter()
-#        
+#
 #        ax2.text(0.95, 0.1, f'{chr(97 + 1 + label_offset)}', transform=ax2.transAxes, ha='right', va='bottom', fontsize=15)
 #
 #
@@ -110,4 +110,4 @@
 #        ax3.text(0.95, 0.1, f'{chr(97 + 2 + label_offset)}', transform=ax3.transAxes, ha='right', va='bottom', fontsize=15)
 #
 #
-#plt.savefig(fig_dir+'fig_freq_'+model+'_'+region+'_land_xf.png', bbox_inches='tight', dpi=300)
+# plt.savefig(fig_dir+'fig_freq_'+model+'_'+region+'_land_xf.png', bbox_inches='tight', dpi=300)

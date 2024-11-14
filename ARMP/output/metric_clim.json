@@ -1,0 +1,27 @@
+{
+    "REF": {},
+    "RESULTS": {
+        "ERA5": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {
+                        "pr": {
+                            "mean": 9.989902509134696
+                        }
+                    }
+                }
+            }
+        },
+        "CanESM2": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {
+                        "pr": {
+                            "mean": 10.027817912597278
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

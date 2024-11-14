@@ -1,7 +1,7 @@
 import ARMP.params.config as config
 from ARMP.lib.convention import Case, Case_clim, Setting
 
-dic = {var: getattr(config, var) for var in dir(config) if not var.startswith('__')}
+dic = {var: getattr(config, var) for var in dir(config) if not var.startswith("__")}
 
 
 def init_dataclass(dc, dic):

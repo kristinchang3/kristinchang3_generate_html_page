@@ -1,0 +1,27 @@
+{
+    "REF": {
+        "ERA5": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {
+                        "freq": 1.0,
+                        "count": 730
+                    }
+                }
+            }
+        }
+    },
+    "RESULTS": {
+        "CanESM2": {
+            "Mundhenk": {
+                "California": {
+                    "NDJFM": {
+                        "freq": 1.0,
+                        "count": 730,
+                        "freq_bias": 0.0
+                    }
+                }
+            }
+        }
+    }
+}

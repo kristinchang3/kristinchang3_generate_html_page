@@ -1,11 +1,11 @@
 import os
 
 import matplotlib
+import numpy as np
 from matplotlib import pyplot as plt
 
 from ARMP.io.input import extract_dict, read_json_file
-from ARMP.lib.control import iter_list
-from ARMP.lib.loader import dic, setting
+from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot
 
@@ -13,7 +13,7 @@ from ARMP.utils.portrait_plot import metric_plot
 def extract_field_dict(dict_in, metric_layout, field_list):
     metric_dict_array = extract_dict(dict_in["RESULTS"], metric_layout, None)
 
-    matrix = np.empty((metric_value.shape[0], len(field_list)))
+    matrix = np.empty((metric_dict_array.shape[0], len(field_list)))
     matrix_pvalue = matrix.copy()
 
     # read in AR characteristics metrics
@@ -32,7 +32,7 @@ def metric_plot_character_panel(
     region_list,
     season_list,
     field_list,
-    axis_labels,
+    xaxis_labels,
     yaxis_labels,
     cbar_label,
     title,
@@ -45,6 +45,9 @@ def metric_plot_character_panel(
     ncols = 5
 
     panel_label = ["(a)", "(b)", "(c)", "(d)", "(e)", ""]
+
+    metric_layout = list([model_list, ARDT_list, region_list[0], season_list])
+    matrix, zscore = extract_field_dict(dict_in, metric_layout, field_list)
 
     minvalue, maxvalue = minmax_range(matrix)
 
@@ -160,7 +163,7 @@ if __name__ == "__main__":
         region_list,
         season_list,
         field_list,
-        axis_labels,
+        xaxis_labels,
         yaxis_labels,
         cbar_label,
         title,

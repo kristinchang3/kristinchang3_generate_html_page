@@ -1,6 +1,3 @@
-from ARMP.lib.loader import dic, setting
-
-
 def plot_diagnostic(dic):
     if dic["diag_peak_day_histogram"]:
         # diagnostic plot for peak day histogram

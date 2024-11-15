@@ -6,11 +6,7 @@ from stats.ar_count import LFAR_count, LFAR_count_mf
 from ARMP.io.output import create_json_file, write_json_file
 from ARMP.lib.control import iter_list, make_case
 from ARMP.lib.convention import Case
-
-# from ARMP.lib.loader import dic, setting
 from ARMP.stats.peak_day import peak_day_stats
-
-# import sys
 
 
 def AR_frequency(dic, setting):

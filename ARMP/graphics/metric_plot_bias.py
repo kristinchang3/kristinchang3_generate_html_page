@@ -1,9 +1,9 @@
 import os
 
+import numpy as np
 from matplotlib import pyplot as plt
 
 from ARMP.io.input import extract_dict, read_json_file
-from ARMP.lib.control import iter_list
 from ARMP.lib.loader import dic
 from ARMP.utils.portrait_plot import metric_plot
 

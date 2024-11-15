@@ -1,18 +1,12 @@
-import copy
-
-# from app.ar_character import AR_character_stats
-import os
 from itertools import product
 
+import numpy as np
+
 from ARMP.io.input import read_json_file
-from ARMP.io.output import (
-    update_dict_ref,
-    update_json_file,
-    update_json_ref,
-    write_json_file,
-)
-from ARMP.lib.control import iter_list, iter_list_ref
-from ARMP.lib.loader import dic, setting
+from ARMP.io.output import update_json_file, update_json_ref
+from ARMP.lib.control import iter_list_ref, make_case
+from ARMP.lib.convention import Case
+from ARMP.lib.loader import dic
 
 
 def AR_character_bias(dic, metric):

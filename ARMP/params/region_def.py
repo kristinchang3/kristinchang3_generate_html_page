@@ -1,5 +1,5 @@
 def domain(region, **kwargs):
-    swap = False
+    # swap = False
 
     if region == "California":
         lats = 34
@@ -20,7 +20,7 @@ def domain(region, **kwargs):
         lone = -5 + 360
 
     elif region in ["WEurope", "W.Europe", "W Europe"]:
-        swap = True
+        # swap = True
 
         lats = 35
         latn = 49.8
@@ -34,7 +34,7 @@ def domain(region, **kwargs):
         lone = 20
 
     elif region == "UK":
-        swap = True
+        # swap = True
 
         lats = 49.8
         latn = 60

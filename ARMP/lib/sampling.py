@@ -69,8 +69,8 @@ def convert_to_target_calendar(da, target_calendar):
                         dt.hour,
                         dt.minute,
                         dt.second,
-                        #dt.microsecond,
-                        #dt.nanosecond,
+                        # dt.microsecond,
+                        # dt.nanosecond,
                     )
                 )
                 for dt in time_values

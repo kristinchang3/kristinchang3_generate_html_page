@@ -1,20 +1,17 @@
-from matplotlib import pyplot as plt
+import matplotlib
 
 matplotlib.use("Agg")
 import os
 from itertools import product
 
+import numpy as np
+from matplotlib import pyplot as plt
+
 from ARMP.io.input import read_json_file
 from ARMP.io.output import update_dict_ref
 from ARMP.io.printting import str_fn, str_print
-from ARMP.lib.control import iter_list, iter_list_ref
-from ARMP.lib.loader import dic, setting
-
-metric = "metric_peak_day"
-
-if not dic["diag_peak_day_histogram"]:
-    # raise FileNotFoundError(f"The file '{file_path}' does not exist.")
-    raise NameError("diag_peak_day_histogram not True")
+from ARMP.lib.control import iter_list, iter_list_ref, make_case
+from ARMP.lib.convention import Case
 
 
 def histogram_peak_day(
@@ -28,7 +25,7 @@ def histogram_peak_day(
     xt = np.arange(1, 13, 1)
     yr = count_mean
 
-    fig = plt.figure()
+    plt.figure()
 
     plt.xlabel("month", fontsize=19)
     plt.ylabel("AR counts", fontsize=19)
@@ -39,6 +36,7 @@ def histogram_peak_day(
 
     plt.bar(xt, yr, yerr=count_std)
 
+    nyear = len(count_ens)
     for j in range(nyear):
         plt.plot(xt, count_ens[j], "o", markersize=2, color="k")
 
@@ -92,3 +90,11 @@ def plot_histogram_peak_day(dic, metric, ref=False):
                     ref=ref,
                     model_ref=model_ref,
                 )
+
+
+# if __name__ == "__main__":
+#    metric = "metric_peak_day"
+#
+#    if not dic["diag_peak_day_histogram"]:
+#        # raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+#        raise NameError("diag_peak_day_histogram not True")

@@ -22,5 +22,5 @@ def Clim_analysis(dic, setting):
         if dic["metric_clim"]:
             clim_mean = Clim_stats(clim_reg_ts).values.tolist()
             result = {case.fn_var_out: {"mean": clim_mean}}
-            #print(result)
+            # print(result)
             write_json_file(dic, "metric_clim", case, result)

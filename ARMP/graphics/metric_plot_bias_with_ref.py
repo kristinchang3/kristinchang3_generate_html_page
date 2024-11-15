@@ -1,13 +1,12 @@
 import os
 
+import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib import transforms
 from matplotlib.colors import ListedColormap
 
 from ARMP.io.input import extract_dict, read_json_file
-from ARMP.lib.control import iter_list
 from ARMP.lib.loader import dic
-from ARMP.utils.portrait_plot import metric_plot
 
 
 def metrics_plot_bias_with_ref(
@@ -89,19 +88,17 @@ def metrics_plot_bias_with_ref(
     # define own transform to set overlay at correct data coords
     x_shift = 1
     y_shift = 0
-    trans = transforms.Affine2D().translate(x_shift, y_shift)
+    transforms.Affine2D().translate(x_shift, y_shift)
 
     # Loop over data dimensions and create text annotation
     for i in range(len(yaxis_labels)):
         for j in range(len(xaxis_labels)):
             if j > 0 and matrix[i, j] > text_color_upper:
-                text = ax.text(j, i, matrix[i, j], ha="center", va="center", color="w")
+                ax.text(j, i, matrix[i, j], ha="center", va="center", color="w")
             elif j > 0 and matrix[i, j] < text_color_lower:
-                text = ax.text(j, i, matrix[i, j], ha="center", va="center", color="w")
+                ax.text(j, i, matrix[i, j], ha="center", va="center", color="w")
             else:
-                text = ax.text(
-                    j, i, matrix[i, j], ha="center", va="center", color="black"
-                )
+                ax.text(j, i, matrix[i, j], ha="center", va="center", color="black")
 
     # create square cells
     ax.set_aspect(1)

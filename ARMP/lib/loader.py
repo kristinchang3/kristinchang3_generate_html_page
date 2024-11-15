@@ -1,5 +1,5 @@
 import ARMP.params.config as config
-from ARMP.lib.convention import Case, Case_clim, Setting
+from ARMP.lib.convention import Setting
 
 dic = {var: getattr(config, var) for var in dir(config) if not var.startswith("__")}
 

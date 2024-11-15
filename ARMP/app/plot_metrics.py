@@ -1,6 +1,3 @@
-from ARMP.lib.loader import dic, setting
-
-
 def plot_metrics(dic):
     if dic["metric_freq"]:
         # metric plot for frequency bias

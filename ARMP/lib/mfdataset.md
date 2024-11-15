@@ -25,4 +25,3 @@ combined_data = xr.open_mfdataset(file_list, concat_dim="time", combine="by_coor
 combined_data = xr.open_mfdataset(file_list, concat_dim="time", combine="by_coords", chunks={'time': 10, 'lat': 5, 'lon': 5})
 
 combined_data = combined_data.persist()
-

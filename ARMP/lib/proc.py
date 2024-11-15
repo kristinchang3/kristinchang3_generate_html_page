@@ -1,3 +1,7 @@
+import numpy as np
+import pandas as pd
+import xarray as xr
+
 from ARMP.lib.convention import coords_fmt
 from ARMP.lib.spatial import land_sea_mask
 
@@ -27,7 +31,7 @@ def init_ds(fn_list, region, mask_lndocn, fn_var, **kwargs):  # , lev=85000):
         # count_reg_mp = xr.DataArray(np.empty(tag_reg_2d.shape), dims=tag_reg_2d.dims, coords=tag_reg_2d.coords)
 
         nlat = ds_tag_reg.lat.size
-        nlat = ds_tag_reg.lon.size
+        nlon = ds_tag_reg.lon.size
 
         # consider to change it to da_reg_2d
         count_reg_mp = xr.DataArray(

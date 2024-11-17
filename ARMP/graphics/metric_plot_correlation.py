@@ -1,11 +1,12 @@
 import os
 
 import matplotlib
-import matplotlib.ticker.FormatStrFormatter as FormatStrFormatter
+#import matplotlib.ticker.FormatStrFormatter as FormatStrFormatter
+from matplotlib.ticker import StrMethodFormatter
 import numpy as np
 from matplotlib import pyplot as plt
 
-from ARMP.io.input import extract_dict, read_json_file
+from ARMP.io.input import extract_dict, read_json_file, flatten_layout
 from ARMP.lib.loader import dic
 from ARMP.utils.portrait_plot import metric_plot
 
@@ -45,7 +46,8 @@ def metric_plot_correlation(
     # y = np.arange(matrix.shape[0] + 1)
     # ax.pcolor(x, y, np.where((zscore >= -1.96) & (zscore < 1.96), matrix, np.nan), ec=None, lw=0.01, hatch='/////', alpha=0)
 
-    cbar.ax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
+    #cbar.ax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
+    cbar.ax.yaxis.set_major_formatter(StrMethodFormatter("{x:.2f}"))
     ax.grid(which="minor", color="k", linestyle="-", linewidth=0.01)
     im.set_clim(minvalue, maxvalue)
     for spine in ax.spines.values():
@@ -56,19 +58,19 @@ def metric_plot_correlation(
 
     plt.subplots_adjust(left=0.2, right=0.95, top=0.75, bottom=0.03)
 
-    plt.savefig(os.path.join(fig_dir, fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(fig_dir, fig_filename) + ".png", dpi=300)
 
     plt.close()
 
 
 if __name__ == "__main__":
     # set metrics for plotting
-    model_list = dic["model_lsit"][1:]
-    ARDT_list = dic["ARDT_lsit"][0]
-    region_list = dic["region_lsit"]
-    season_list = dic["season_lsit"][0]
+    model_list = dic["model_list"][1:]
+    ARDT_list = dic["ARDT_list"][0]
+    region_list = dic["region_list"]
+    season_list = dic["season_list"][0]
 
-    metric_layout = list([model_list, ARDT_list, region_list, season_list])
+    metric_layout = flatten_layout([model_list, ARDT_list, region_list, season_list])
     metric_var = "corr"
     # metric_sig = 'pvalue'
     metric = "metric_spatial_corr"
@@ -79,6 +81,8 @@ if __name__ == "__main__":
     # metric_pvalue = extract_dict(dict_in['RESULTS'], metric_layout, metric_sig)
 
     # format and rotate metrics matrix if necessary
+    if metric_value.shape == ():
+        metric_value = np.array([[metric_value]])
     matrix = metric_value
 
     # metric plot setting

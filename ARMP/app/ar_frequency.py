@@ -43,11 +43,15 @@ def AR_frequency(dic, setting):
             else:
                 peak, clim_mean, clim_std, clim = peak_day_stats(da_occur_ts, dic)
 
+#                print("type peak = ", type(peak))
+#                print("clim = ", clim)
+#                print("clim_mean = ", clim_mean.values.tolist())
+#                print("clim_std = ", clim_std.values)
                 result = {
                     "peak_day": peak,
-                    "count_mean": clim_mean,
-                    "count_std": clim_std,
-                    "count_ens": clim,
+                    "count_mean": clim_mean.values.tolist(),
+                    "count_std": clim_std.values.tolist(),
+                    "count_ens": [arr.tolist() for arr in clim],
                 }
 
                 write_json_file(dic, "metric_peak_day", case, result)

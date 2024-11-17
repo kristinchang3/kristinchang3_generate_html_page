@@ -109,12 +109,12 @@ def get_blobstats_field(model, ARDT, region, season, field_id):
 
 if __name__ == "__main__":
     # set metrics for plotting
-    model_ref = dic["model_lsit"][0]
-    model1 = dic["model_lsit"][1]
-    model2 = dic["model_lsit"][2]
-    ARDT = dic["ARDT_lsit"][0]
-    region = dic["region_lsit"][0]
-    season = dic["season_lsit"][0]
+    model_ref = dic["model_list"][0]
+    model1 = dic["model_list"][1]
+    model2 = dic["model_list"][2]
+    ARDT = dic["ARDT_list"][0]
+    region = dic["region_list"][0]
+    season = dic["season_list"][0]
 
     fig_dir = dic["dir_fig"]
     fig_filename = f"character_histogram_{str_fn(region)}"
@@ -169,4 +169,4 @@ if __name__ == "__main__":
     # 	ax[4].set_xlabel(field_list[4] + ' (°Great Circle)', fontsize=10)
 
     plt.suptitle(str_print(region))
-    plt.savefig(os.path.join(fig_dir, fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(fig_dir, fig_filename) + ".png", dpi=300)

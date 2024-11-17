@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import xarray as xr
+import cftime
 
 
 def time_select(ds_tag_reg, start_date, end_date, **kwargs):
@@ -41,36 +42,94 @@ def get_adjustment_months(months):
     return result
 
 
-def adjust_time_for_season(time, months):
+def adjust_season(da, months):
     """prepare for the adjusted time index for seasonal average."""
 
     adjustment_months = get_adjustment_months(months)
 
-    # Check if adjustment_months is empty
     if not adjustment_months:
-        return time  # Return the original time if no adjustments are needed
+        return da 
 
-    # Create a copy of the original years
-    adjusted_years = time.dt.year.copy()
+    if isinstance(da.coords['time'].values[0], cftime.datetime):
 
-    # Adjust the year for specified months to the next year
-    adjusted_years = xr.where(
-        time.dt.month.isin(adjustment_months),
-        adjusted_years + 1,  # Move to the next year
-        adjusted_years,
-    )
+        #calendar = da.coords['time'].attrs.get("calendar", "standard")
+        #if calendar == "360_day":
+        #    da = da.convert_calendar('standard', align_on="year")
+        
+        time = da.coords['time']
+        
+        years = np.array([t.year for t in time.values])
+        months = np.array([t.month for t in time.values])
+        days = np.array([t.day for t in time.values])
+        hours = np.array([t.hour for t in time.values])
+        minutes = np.array([t.minute for t in time.values])
+        seconds = np.array([t.second for t in time.values])
 
-    # Construct a new time array with the adjusted years
-    adjusted_time = pd.to_datetime(
-        [
-            pd.Timestamp(year, month, day)
-            for year, month, day in zip(
-                adjusted_years.values, time.dt.month.values, time.dt.day.values
-            )
-        ]
-    )
+        adjusted_years = np.copy(years)
+        adjusted_years[np.isin(months, adjustment_months)] += 1
 
-    return adjusted_time
+        # adjusted_time = pd.to_datetime(
+        #     [f"{year}-{month:02d}-{day:02d}" for year, month, day in zip(adjusted_years, months, days)],
+        #     errors='coerce'  # Automatically handle invalid dates by returning NaT
+        # )
+
+        adjusted_time = pd.to_datetime(
+            [f"{year}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}" for year, month, day, hour, minute, second in zip(adjusted_years, months, days, hours, minutes, seconds)],
+            errors='coerce'  # Automatically handle invalid dates by returning NaT
+        )
+
+        adjusted_time = np.array(adjusted_time)
+        
+    else:
+
+        time = da.coords['time']
+        adjusted_years = time.dt.year.copy()
+
+        # Adjust the year for specified months to the next year
+        adjusted_years = xr.where(
+            time.dt.month.isin(adjustment_months),
+            adjusted_years + 1,  # Move to the next year
+            adjusted_years,
+        )
+
+        # Construct a new time array with the adjusted years
+        adjusted_time = pd.to_datetime(
+            [
+                pd.Timestamp(year, month, day)
+                for year, month, day in zip(
+                    adjusted_years.values, time.dt.month.values, time.dt.day.values
+                )
+            ]
+        )
+
+    
+    da.coords['time'] = ('time', adjusted_time)
+
+    return da
+
+
+def season_group(da, months, group='year'):
+    """
+    seasonal average
+    with treatment for season spanning two years e.g. DJF
+    """
+    da = adjust_season(da, months)
+    da_grp = da.groupby(f"time.{group}")
+    da_grp_mean = da_grp.mean(dim='time')
+
+    return da_grp_mean
+
+
+def dim_year_to_time(da_grp_mean):
+    """
+    convert 'year' dim and coords to 'time'
+    """
+    time_index = pd.to_datetime(da_grp_mean['year'], format='%Y')
+    time_index = pd.DatetimeIndex([str(year) + '-01-01' for year in da_grp_mean['year'].values])
+    da_grp_mean = da_grp_mean.swap_dims({'year': 'time'})
+    da_grp_mean['time'] = time_index
+
+    return da_grp_mean
 
 
 def extract_time_components(time_array):

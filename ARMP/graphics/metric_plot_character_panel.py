@@ -4,7 +4,7 @@ import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
 
-from ARMP.io.input import extract_dict, read_json_file
+from ARMP.io.input import extract_dict, read_json_file, flatten_layout
 from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot
@@ -46,7 +46,7 @@ def metric_plot_character_panel(
 
     panel_label = ["(a)", "(b)", "(c)", "(d)", "(e)", ""]
 
-    metric_layout = list([model_list, ARDT_list, region_list[0], season_list])
+    metric_layout = flatten_layout([model_list, ARDT_list, region_list[0], season_list])
     matrix, zscore = extract_field_dict(dict_in, metric_layout, field_list)
 
     minvalue, maxvalue = minmax_range(matrix)
@@ -125,7 +125,7 @@ def metric_plot_character_panel(
     cbar.outline.set_linewidth(0.5)
 
     plt.subplots_adjust(wspace=0.2, hspace=0.1)
-    plt.savefig(os.path.join(fig_dir, fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(fig_dir, fig_filename) + ".png", dpi=300)
 
     plt.close()
 
@@ -134,10 +134,10 @@ if __name__ == "__main__":
     field_list = ["lat", "lon", "area", "width", "length"]
 
     # set metrics for plotting
-    model_list = dic["model_lsit"][1:]
-    ARDT_list = dic["ARDT_lsit"][0]
-    region_list = dic["region_lsit"]
-    season_list = dic["season_lsit"][0]
+    model_list = dic["model_list"][1:]
+    ARDT_list = dic["ARDT_list"][0]
+    region_list = dic["region_list"]
+    season_list = dic["season_list"][0]
 
     metric = "metric_character"
     # metric_var = 'bias_norm'

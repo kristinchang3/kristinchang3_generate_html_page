@@ -15,8 +15,8 @@ def cyclic_cmap():
 
 
 def minmax_range(metric_value, scale_factor=1.0):
-    maxvalue = np.max(metric_value)
-    minvalue = np.min(metric_value)
+    maxvalue = np.nanmax(metric_value)
+    minvalue = np.nanmin(metric_value)
     maxvalue = max(maxvalue, minvalue * -1) * scale_factor
     minvalue = maxvalue * -1
 

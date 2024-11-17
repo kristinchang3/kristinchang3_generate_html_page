@@ -3,9 +3,9 @@
         "ERA5": {
             "Mundhenk": {
                 "California": {
-                    "NDJFM": {
+                    "annual": {
                         "freq": 1.0,
-                        "count": 730
+                        "count": 730.0
                     }
                 }
             }
@@ -15,9 +15,9 @@
         "CanESM2": {
             "Mundhenk": {
                 "California": {
-                    "NDJFM": {
+                    "annual": {
                         "freq": 1.0,
-                        "count": 730,
+                        "count": 730.0,
                         "freq_bias": 0.0
                     }
                 }

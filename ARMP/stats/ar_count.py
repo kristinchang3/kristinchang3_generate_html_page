@@ -1,4 +1,5 @@
 import xarray as xr
+import os
 
 from ARMP.io.output import nc_out
 from ARMP.lib.preprocessing import data_QAQC, data_QAQC_mf, freq_convert
@@ -13,10 +14,13 @@ def LFAR_count(
     mask_reg, da_occur_ts, count_reg_mp, tag_reg_mpts = init_ds(
         fn_list, region, mask_lndocn, fn_var, **kwargs
     )
+#    print("mask_reg = ", mask_reg) # mask_reg is None is mask_lndocn == None
 
     with open(fn_list, "r") as f:
         for fn in f:
             # ---------------------------------------------
+            fn_dir = os.path.dirname(fn_list)
+            fn = os.path.join(fn_dir, fn)
 
             tag_reg_lf = data_QAQC(
                 fn.strip(),
@@ -29,7 +33,7 @@ def LFAR_count(
                 **kwargs
             )
 
-            if not tag_reg_lf:
+            if tag_reg_lf is None:
                 continue
 
             # ---------------------------------------------
@@ -43,8 +47,14 @@ def LFAR_count(
             # if out_map_ts:
             # tag_reg_lf_occur = tag_reg_lf.where(da_occur_ts).dropna(dim='time')
 
+#            print("occur = ", occur)
+#            print("sum occur = ", np.sum(occur.values==1))
+#            print("tag_reg_lf = ", tag_reg_lf)
             tag_reg_lf_occur = tag_reg_lf.where(occur).dropna(dim="time")
+#            print("tag_reg_lf_occur = ", tag_reg_lf_occur)
+#            print("tag_reg_mpts = ", tag_reg_mpts)
             tag_reg_mpts = xr.concat([tag_reg_mpts, tag_reg_lf_occur], dim="time")
+#            print("tag_reg_mpts = ", tag_reg_mpts)
 
             # =============
 

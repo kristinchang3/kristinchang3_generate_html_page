@@ -1,0 +1,17 @@
+{
+    "REF": {
+        "ERA5": null
+    },
+    "RESULTS": {
+        "CanESM2": {
+            "Mundhenk": {
+                "California": {
+                    "annual": {
+                        "corr": 0.22094243514845363,
+                        "pvalue": 0.858173413727326
+                    }
+                }
+            }
+        }
+    }
+}

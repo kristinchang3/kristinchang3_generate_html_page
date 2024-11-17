@@ -12,7 +12,7 @@ def plot_metrics(dic):
         #    # histogram for AR peak day
         #    print("custom and run graphics/histogram_peak_day.py")
 
-    if dic["metric_spatial_correlation"]:
+    if dic["metric_spatial_corr"]:
         # metric plot for spatial correlation
         print("custom and run graphics/metric_plot_correlation.py")
 

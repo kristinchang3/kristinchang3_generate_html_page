@@ -7,7 +7,8 @@ layout = ("model", "ARDT", "region", "season")
 start_date = "1997-01-01"
 end_date = "1999-12-31"
 
-season_list = ["NDJFM"]
+#season_list = ["NDJFM"]
+season_list = ["annual"]
 season_month_list = [[11, 12, 1, 2, 3]]
 
 
@@ -22,7 +23,7 @@ tag_var_out = "binary_tag"
 tag_var_fn = tag_var_out
 
 
-include_clim = True  # used to cross check at QA check
+include_clim = False  # used to cross check at QA check
 
 clim_var_list = ["pr", "pr"]  # idc
 clim_freq_list = ["1D", "1D"]  # idc, climate data frequency
@@ -60,7 +61,7 @@ dir_out = set_dir("output")
 dir_fig = set_dir("figure")
 
 debug = False
-make_plot = False
+make_plot = True
 
 tag_out_ts = True
 tag_out_map = True
@@ -76,15 +77,16 @@ restart = False  # run climate data metrics only, based on processed/existing/sa
 
 # ======== metrics =========
 metric_freq = True
-metric_peak_day = False
+metric_peak_day = True
 metric_character = False
-metric_spatial_corr = False
-metric_iou = False
+metric_spatial_corr = True
+metric_iou = True
 metric_clim = True
 
 vars_in_metric_freq = ("freq", "count")
 vars_in_metric_peak_day = ("peak_day", "count_mean", "count_std", "count_ens")
 
 # ======== diagnostics =========
-diag_peak_day_histogram = False
+diag_peak_day_histogram = True
 diag_character_histogram = False
+diag_freq_map = False

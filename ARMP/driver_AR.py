@@ -25,7 +25,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 
     if dic["metric_peak_day"]:
         # calculate AR peak day metrics
-        AR_metrics_bias(dic, "metric_peak_day", var_stats)
+        AR_metrics_bias(dic, "metric_peak_day", "peak_day")
 
     if dic["metric_character"]:
         # calculate AR characteristics metrics
@@ -35,7 +35,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 
     if dic["metric_spatial_corr"]:
         # calculate AR frequency spatial correlation metrics
-        AR_spatial_correlation(dic, "metric_spatial_correlation")
+        AR_spatial_correlation(dic, "metric_spatial_corr")
 
     if dic["metric_iou"]:
         # calculate IOU for specific case

@@ -49,9 +49,12 @@ def data_QAQC(fn, mask_reg, region, season, fn_var, start_date, end_date, **kwar
     # da = dim_select(ds_tag_reg_tm, fn_var=fn_var, **kwargs)
     # da = season_select(da, season)
 
+    if mask_reg is None:
+        return da
+
     # da_lf = apply_mask(da, mask=mask_lndocn)
     # if tag_var:
-    if "tag_var" in kwargs:
+    elif "tag_var" in kwargs:
         # if isinstance(case, Case):
         # if hasattr(case, 'tag_var'):
         da_lf = xr.apply_ufunc(np.logical_and, da, mask_reg)

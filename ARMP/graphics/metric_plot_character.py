@@ -3,7 +3,7 @@ import os
 import numpy as np
 from matplotlib import pyplot as plt
 
-from ARMP.io.input import extract_dict, read_json_file
+from ARMP.io.input import extract_dict, read_json_file, flatten_layout
 from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot
@@ -53,7 +53,7 @@ def metric_plot_character(
 
     # plt.subplots_adjust(left=0.2, right=0.95, top=0.75, bottom=0.03)
 
-    plt.savefig(os.path.join(fig_dir, fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(fig_dir, fig_filename) + ".png", dpi=300)
 
     plt.close()
 
@@ -62,18 +62,18 @@ if __name__ == "__main__":
     field_list = ["lat", "lon", "area", "width", "length"]
 
     # set metrics for plotting
-    model_list = dic["model_lsit"][1]
-    ARDT_list = dic["ARDT_lsit"][0]
-    region_list = dic["region_lsit"]
-    season_list = dic["season_lsit"][0]
+    model_list = dic["model_list"][1]
+    ARDT_list = dic["ARDT_list"][0]
+    region_list = dic["region_list"]
+    season_list = dic["season_list"][0]
 
-    model_ref = dic["model_lsit"][0]
+    model_ref = dic["model_list"][0]
 
     instance = model_list
     instance_ref = model_ref
 
     metric = "metric_character"
-    metric_layout = list([model_list, ARDT_list, region_list, season_list])
+    metric_layout = flatten_layout([model_list, ARDT_list, region_list, season_list])
     metric_var = "bias_norm"
     metric_sig = "zscore"
 

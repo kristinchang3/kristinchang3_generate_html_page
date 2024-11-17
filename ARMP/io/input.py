@@ -8,11 +8,21 @@ import xarray as xr
 
 
 def set_dir(folder):
-    # Define the path for the 'data' directory
+    """
+    set absolute directory path for a specific folder in ARMP
+    """
+    # Define the path for the 'data' directory as structured in ARMP
     data_dir = Path(__file__).parent.parent / folder
     # Create the directory with parents and without raising an error if it exists
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
+
+
+def current_dir():
+    """ get absolute path for current script dir """
+    script_path = os.path.abspath(__file__)
+    script_dir = os.path.dirname(script_path)
+    return script_dir
 
 
 def unpack_fn_list(fn_list):
@@ -27,6 +37,11 @@ def unpack_fn_list(fn_list):
     absolute_file_list = [os.path.join(fn_dir, file_name) for file_name in file_list]
 
     return absolute_file_list
+
+
+def flatten_layout(metric_layout):
+    metric_layout_flatten = [item if isinstance(item, list) else [item] for item in metric_layout]
+    return metric_layout_flatten
 
 
 # def create_variables_dict(model, ARDT, region, season, **kwargs):

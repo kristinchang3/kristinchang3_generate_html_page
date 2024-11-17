@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from matplotlib import transforms
 from matplotlib.colors import ListedColormap
 
-from ARMP.io.input import extract_dict, read_json_file
+from ARMP.io.input import extract_dict, read_json_file, flatten_layout
 from ARMP.lib.loader import dic
 
 
@@ -114,41 +114,41 @@ def metrics_plot_bias_with_ref(
     plt.gca().invert_yaxis()
     fig.tight_layout()
 
-    plt.savefig(os.path.join(fig_dir, fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(fig_dir, fig_filename) + ".png", dpi=300)
 
     plt.close()
 
 
 if __name__ == "__main__":
     # set metrics for plotting
-    model_list = dic["model_lsit"][1:]
-    ARDT_list = dic["ARDT_lsit"][0]
-    region_list = dic["region_lsit"]
-    season_list = dic["season_lsit"][0]
+    model_list = dic["model_list"][1:]
+    ARDT_list = dic["ARDT_list"][0]
+    region_list = dic["region_list"]
+    season_list = dic["season_list"][0]
 
-    metric_layout = list([model_list, ARDT_list, region_list, season_list])
-    metric_var = "bias"
-    metric = "metric_peak_day_bias"
+    metric_layout = flatten_layout([model_list, ARDT_list, region_list, season_list])
+    metric_var = "freq_bias"
+    metric = "metric_freq_bias"
 
     # load metrics value
     dict_in = read_json_file(dic, metric)
     metric_value = extract_dict(dict_in["RESULTS"], metric_layout, metric_var)
 
     # retrieve ref var_stats
-    var_stats = "peak_day"
-    model_ref = list(dic["model_lsit"][0])
-    ref_layout = list([model_ref, ARDT_list, region_list, season_list])
+    var_stats = "freq"
+    model_ref = dic["model_list"][0]
+    ref_layout = flatten_layout([model_ref, ARDT_list, region_list, season_list])
     ref_value = extract_dict(dict_in["REF"], ref_layout, var_stats)
 
     # merge ref and metrics results into one matrix
-    ref_value = ref_value.reshape(len(model_ref), len(region_list))
+    ref_value = ref_value.reshape(len([model_ref]), len(region_list))
     metric_merge = np.vstack((ref_value, metric_value))
 
     # format and rotate metrics matrix if necessary
     matrix = metric_merge.T.astype(int)
 
     # metric plot setting
-    xaxis_labels = model_ref + model_list
+    xaxis_labels = [model_ref] + model_list
     yaxis_labels = region_list
 
     fig_dir = dic["dir_fig"]

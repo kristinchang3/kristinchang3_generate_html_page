@@ -1,92 +1,96 @@
-# from pathlib import Path
 from ARMP.io.input import set_dir
 
-json_structure = ["REF", "RESULTS"]
-layout = ("model", "ARDT", "region", "season")
+project_name = "ARMP demo project with dummmy data 11/11/2024"
 
-start_date = "1997-01-01"
-end_date = "1999-12-31"
+# ======= basic ARMP workflow structure and dimension setting =======
+json_structure = ("REF", "RESULTS",)  # frozen with ARMP version
+layout = ("model", "ARDT", "region", "season",)  # frozen with ARMP version
 
-#season_list = ["NDJFM"]
-season_list = ["annual"]
-season_month_list = [[11, 12, 1, 2, 3]]
+season_list = ("NDJFM",)  # can be customized with season_month_list below
+season_month_list = ([11, 12, 1, 2, 3],)
 
-
-model_list = ["ERA5", "CanESM2"]  # idm
-ARDT_list = ["Mundhenk"]  # idt
-region_list = ["California"]  # idr
+model_list = ("ERA5", "CanESM2",)
+ARDT_list = ("Mundhenk",)
+region_list = ("California",)  # custom region in params/region_def.py
 
 
-tag_var_list = ["binary_tag", "binary_tag"]  # idt
-tag_freq_list = ["6h", "6h"]  # idt, tag data frequency
-tag_var_out = "binary_tag"
+# ======= input data specification =======
+tag_var_list = ("binary_tag",)  # same length as ARDT_list
+tag_freq_list = ("6h", "6h")  # AR data temporal resolution, same length as model_list
+tag_var_out = "binary_tag"  # output AR variable
 tag_var_fn = tag_var_out
 
 
-include_clim = False  # used to cross check at QA check
+include_clim = True  # analysis on climate data, e.g., precipitation, temperature
 
-clim_var_list = ["pr", "pr"]  # idc
-clim_freq_list = ["1D", "1D"]  # idc, climate data frequency
+# ------- set section below if include_clim -------
+clim_var_list = ("pr", "pr",)  # same length as model_list
+clim_freq_list = ("1D", "1D",)  # climate data temporal resolution
 clim_var_out = "pr"
 clim_var_fn = clim_var_out
 
-clim_4D = False  # if 4D select plev
-lev_dim_list = ["plev", "lev"]
-lev_dim = "plev"  # lev_dim_list[i]
-lev_coord_list = [85000, 85000]
-lev_coord = 85000
+clim_4D = False  # if 4-dimensional data, e.g., pressure level wind
+lev_dim_list = ("plev", "lev",)
+lev_coord_list = (85000, 85000,)
+
+unit_adjust_list = (
+    (True, "multiply", 86400.0, "mm d-1"),
+    False,
+)  # output units must be consistent, adjust when necessary
 
 
-# target_freq_list = ['1D', '1D'] # target frequency can not be higher than tag_freq or var_freq, this is the temporal resolution we want to use to perform statistics
-target_freq = "1D"
+# ======= spatiotemporal setting =======
+start_date = "1997-01-01"  # analysis start data
+end_date = "1999-12-31"
+
+target_freq = "1D"  # target frequency can not be higher than tag_freq or clim_freq, this is the temporal resolution we use to perform statistics
+
+mask_lndocn = None  # None, 'ocean', or 'land' for landfalling ARs
 
 
-mask_lndocn = None  # 'ocean', 'land'
+# ======= workflow flags ========
+parallel = True  # parallel data loading and chunking
+restart = False  # run climate data metrics only, based on processed/saved AR tag data
+
+debug = False  # debug mode, available for ARMP development phases
+make_plot = True  # produce metric or diagnostic figures along with job run
 
 
-# unit_adjust = ('True', 'multiply', 86400)
-# unit_src
-# unit_target
-
-
-# dir_in = Path(__file__).parent.parent/'data'
-# dir_out = Path(__file__).parent.parent/'output'
-# dir_fig = Path(__file__).parent.parent/'figure'
-# dir_in.mkdir(parents=True, exist_ok=True)
-# dir_out.mkdir(parents=True, exist_ok=True)
-# dir_fig.mkdir(parents=True, exist_ok=True)
-
+# ======== input, output, figure dir =========
 dir_in = set_dir("data")
 dir_out = set_dir("output")
 dir_fig = set_dir("figure")
 
-debug = False
-make_plot = True
 
-tag_out_ts = True
-tag_out_map = True
-tag_out_map_ts = True
-clim_out_ts = True
-clim_out_map = True
-clim_out_map_ts = True
-
-
-parallel = True
-restart = False  # run climate data metrics only, based on processed/existing/saved AR tags statistis
+# ======= save processed AR and climate data as .nc file ========
+# required for metric and diagnostic workflow, e.g., for IOU metrics, set tag_out_ts=True
+tag_out_ts = True  # output AR regional averaged time series
+tag_out_map = True  # output AR time mean (e.g., frequency) map
+tag_out_map_ts = True  # output regionally cropped AR object series
+clim_out_ts = True  # output regional averaged clim time series
+clim_out_map = True  # output clim time mean map
+clim_out_map_ts = True  # output regionally cropped clim data series when AR exists
 
 
 # ======== metrics =========
-metric_freq = True
-metric_peak_day = True
-metric_character = False
-metric_spatial_corr = True
-metric_iou = True
-metric_clim = True
+metric_freq = True  # AR frequency metrics
+metric_peak_day = True  # AR peak day metrics
+metric_character = False  # AR charateristic metrics
+metric_spatial_corr = True  # AR spatial correolation metrics
+metric_iou = True  # AR temporal concurrence metrics
+metric_clim = True  # metrics for AR-related climate data
 
-vars_in_metric_freq = ("freq", "count")
-vars_in_metric_peak_day = ("peak_day", "count_mean", "count_std", "count_ens")
+
+# ======== available variables for metrics =========
+vars_in_metric_freq = ("freq", "count",)
+vars_in_metric_peak_day = ("peak_day", "count_mean", "count_std", "count_ens",)
+vars_in_metric_character = ("lat", "lon", "area", "width", "length",)
+vars_in_metric_spatial_corr = ("freq",)
+vars_in_metric_iou = ("occur",)
+vars_in_metric_clim = ({"pr": "mean"},)
+
 
 # ======== diagnostics =========
-diag_peak_day_histogram = True
-diag_character_histogram = False
-diag_freq_map = False
+diag_peak_day_histogram = True  # AR occurence monthly histogram
+diag_character_histogram = False  # AR characteristics histogram
+diag_freq_map = False  # AR frequency map

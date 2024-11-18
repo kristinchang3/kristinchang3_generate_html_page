@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import xarray as xr
 import xcdat as xc
@@ -5,6 +7,7 @@ import xcdat as xc
 from ARMP.io.input import unpack_fn_list
 from ARMP.lib.spatial import apply_mask, dim_select, region_select
 from ARMP.lib.temporal import season_select, time_select
+from ARMP.utils.adjust_units import adjust_units
 
 
 def freq_convert(da, fn_freq, target_freq, **kwargs):
@@ -49,6 +52,10 @@ def data_QAQC(fn, mask_reg, region, season, fn_var, start_date, end_date, **kwar
     # da = dim_select(ds_tag_reg_tm, fn_var=fn_var, **kwargs)
     # da = season_select(da, season)
 
+    if "clim_var" in kwargs:
+        if kwargs["unit_adjust"]:
+            da = adjust_units(da, kwargs["unit_adjust"])
+
     if mask_reg is None:
         return da
 
@@ -66,10 +73,12 @@ def data_QAQC(fn, mask_reg, region, season, fn_var, start_date, end_date, **kwar
 def data_QAQC_mf(
     fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs
 ):
-    abs_fn_list = unpack_fn_list(fn_list)
+    # abs_fn_list = unpack_fn_list(fn_list, base_dir=None)
+    base_dir = Path(__file__).parent.parent
+    abs_path_list = unpack_fn_list(fn_list, base_dir)
 
     # ds_tag = xr.open_mfdataset(abs_fn_list, concat_dim="time", combine="nested", chunks={'time': 100})
-    ds_tag = xr.open_mfdataset(abs_fn_list, combine="by_coords", chunks={"time": 100})
+    ds_tag = xr.open_mfdataset(abs_path_list, combine="by_coords", chunks={"time": 100})
 
     ds_tag_reg = region_select(ds_tag, region, **kwargs)
 
@@ -80,6 +89,10 @@ def data_QAQC_mf(
     da = dim_select(ds_tag_reg_tm_sn, fn_var, **kwargs)
 
     da = da.persist()
+
+    if "clim_var" in kwargs:
+        if kwargs["unit_adjust"]:
+            da = adjust_units(da, kwargs["unit_adjust"])
 
     # if tag_var:
     if "tag_var" in kwargs:
@@ -94,14 +107,18 @@ def data_QAQC_mf(
 def data_QAQC_mf_xc(
     fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs
 ):
-    abs_fn_list = unpack_fn_list(fn_list)
+    base_dir = Path(__file__).parent.parent
+    abs_path_list = unpack_fn_list(fn_list, base_dir)
 
-    ds_tag = xc.open_mfdataset(abs_fn_list, combine="by_coords", chunks={"time": 100})
+    ds_tag = xc.open_mfdataset(abs_path_list, combine="by_coords", chunks={"time": 100})
     ds_tag_reg = region_select(ds_tag, region, **kwargs)
     ds_tag_reg_tm = time_select(ds_tag_reg, start_date, end_date, **kwargs)
     ds_tag_reg_tm_sn = season_select(ds_tag_reg_tm, season, **kwargs)
     da = dim_select(ds_tag_reg_tm_sn, fn_var, **kwargs)
     da = da.persist()
+    if "clim_var" in kwargs:
+        if kwargs["unit_adjust"]:
+            da = adjust_units(da, kwargs["unit_adjust"])
     if "tag_var" in kwargs:
         da_lf = apply_mask(da, mask_lndocn, **kwargs)
         return da_lf

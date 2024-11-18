@@ -28,7 +28,7 @@ def iter_list(dic, ext="_list"):
     # for field in layout:
     for field in dic["layout"]:
         # lst = globals().get(field + ext, None)
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         layout_pool.append(lst)
     return layout_pool
 
@@ -36,20 +36,28 @@ def iter_list(dic, ext="_list"):
 def iter_list_ref(dic, ext="_list"):
     layout_pool = []
     for field in dic["layout"]:
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         if field == "model":
-            model_ref = lst.pop(0)
-        layout_pool.append(lst)
+            #    model_ref = lst.pop(0)
+            # layout_pool.append(lst)
+            model_ref = lst[0]
+            layout_pool.append(lst[1:])
+        else:
+            layout_pool.append(lst)
     return layout_pool, model_ref
 
 
 def iter_list_ref_ARDT(dic, ext="_list"):
     layout_pool = []
     for field in dic["layout"]:
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         if field == "ARDT":
-            ARDT_ref = lst.pop(0)
-        layout_pool.append(lst)
+            #    ARDT_ref = lst.pop(0)
+            # layout_pool.append(lst)
+            ARDT_ref = lst[0]
+            layout_pool.append(lst[1:])
+        else:
+            layout_pool.append(lst)
     return layout_pool, ARDT_ref
 
 

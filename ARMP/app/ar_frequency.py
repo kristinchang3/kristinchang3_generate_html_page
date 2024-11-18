@@ -4,6 +4,7 @@ from itertools import product
 from stats.ar_count import LFAR_count, LFAR_count_mf
 
 from ARMP.io.output import create_json_file, write_json_file
+from ARMP.io.printting import print_case
 from ARMP.lib.control import iter_list, make_case
 from ARMP.lib.convention import Case
 from ARMP.stats.peak_day import peak_day_stats
@@ -16,6 +17,8 @@ def AR_frequency(dic, setting):
 
     for combi in product(*layout_pool):
         case = make_case(Case, combi, dic)
+
+        print_case(case)
 
         kwargs = {**asdict(case), **asdict(setting)}
 
@@ -43,10 +46,10 @@ def AR_frequency(dic, setting):
             else:
                 peak, clim_mean, clim_std, clim = peak_day_stats(da_occur_ts, dic)
 
-#                print("type peak = ", type(peak))
-#                print("clim = ", clim)
-#                print("clim_mean = ", clim_mean.values.tolist())
-#                print("clim_std = ", clim_std.values)
+                #                print("type peak = ", type(peak))
+                #                print("clim = ", clim)
+                #                print("clim_mean = ", clim_mean.values.tolist())
+                #                print("clim_std = ", clim_std.values)
                 result = {
                     "peak_day": peak,
                     "count_mean": clim_mean.values.tolist(),

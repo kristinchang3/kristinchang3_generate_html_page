@@ -19,28 +19,60 @@ def set_dir(folder):
 
 
 def current_dir():
-    """ get absolute path for current script dir """
+    """get absolute path for current script dir"""
     script_path = os.path.abspath(__file__)
     script_dir = os.path.dirname(script_path)
     return script_dir
 
 
-def unpack_fn_list(fn_list):
+def unpack_fn_list(fn_list, base_dir=None):
     """
-    fn_list is a .txt file contains filenames
-    unpack it as a list of filenames
+    Reads file paths from fn_list txt file, resolves them to absolute paths (if necessary),
+    and return a list of file paths.
     """
     with open(fn_list, "r") as f:
-        file_list = [line.strip() for line in f]
+        # file_list = [line.strip() for line in f]
+        file_list = [line.strip() for line in f.readlines()]
 
-    fn_dir = os.path.dirname(fn_list)
-    absolute_file_list = [os.path.join(fn_dir, file_name) for file_name in file_list]
+    path_list = []
 
-    return absolute_file_list
+    for path in file_list:
+        path_obj = Path(path)  # Convert to Path object
+
+        # Check if path is absolute or relative
+        if path_obj.is_absolute():
+            full_file_path = path_obj.resolve()  # If absolute, resolve it
+        else:
+            # If relative, resolve it using the base_dir
+            if base_dir:
+                full_file_path = (base_dir / path_obj).resolve()
+            else:
+                print(f"Error: Base directory not provided for relative path: {path}")
+                continue
+
+        path_list.append(full_file_path)
+
+    return path_list
+
+
+# def unpack_fn_list(fn_list):
+#    """
+#    fn_list is a .txt file contains filenames
+#    unpack it as a list of filenames
+#    """
+#    with open(fn_list, "r") as f:
+#        file_list = [line.strip() for line in f]
+#
+#    fn_dir = os.path.dirname(fn_list)
+#    absolute_file_list = [os.path.join(fn_dir, file_name) for file_name in file_list]
+#
+#    return absolute_file_list
 
 
 def flatten_layout(metric_layout):
-    metric_layout_flatten = [item if isinstance(item, list) else [item] for item in metric_layout]
+    metric_layout_flatten = [
+        item if isinstance(item, list) else [item] for item in metric_layout
+    ]
     return metric_layout_flatten
 
 

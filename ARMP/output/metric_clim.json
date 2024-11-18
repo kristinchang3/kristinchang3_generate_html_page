@@ -4,9 +4,9 @@
         "ERA5": {
             "Mundhenk": {
                 "California": {
-                    "annual": {
+                    "NDJFM": {
                         "pr": {
-                            "mean": 9.989902509134696
+                            "mean": 863127.5767892377
                         }
                     }
                 }
@@ -15,7 +15,7 @@
         "CanESM2": {
             "Mundhenk": {
                 "California": {
-                    "annual": {
+                    "NDJFM": {
                         "pr": {
                             "mean": 10.027817912597278
                         }

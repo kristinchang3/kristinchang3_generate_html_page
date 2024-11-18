@@ -4,7 +4,7 @@ import matplotlib
 import numpy as np
 from matplotlib import pyplot as plt
 
-from ARMP.io.input import extract_dict, read_json_file, flatten_layout
+from ARMP.io.input import extract_dict, flatten_layout, read_json_file
 from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot

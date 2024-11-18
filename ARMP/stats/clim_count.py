@@ -26,6 +26,13 @@ def Clim_count_mf(
     # clim_reg_lf = freq_convert(clim_reg_lf, fn_freq, target_freq, **kwargs)
     clim_reg_lf = freq_convert(clim_reg_lf, **kwargs)
 
+    clim_out_ts = kwargs["clim_out_ts"]
+    clim_out_map_ts = kwargs["clim_out_map_ts"]
+    case_name = kwargs["case_name"]
+    dir_out = kwargs["dir_out"]
+    clim_var_fn = kwargs["clim_var_fn"]
+    tag_var_fn = kwargs["tag_var_fn"]
+
     # read in AR tag data
     case_name_tag = case_combi(case_name, clim_var_fn, "tag")
     tag_reg_mpts = nc_in(tag_var_fn, "mpts.nc", case_name_tag, dir_out)
@@ -36,7 +43,7 @@ def Clim_count_mf(
 
     try:
         clim_reg_mpts = regrid_coords_precision(clim_reg_mpts, tag_reg_mpts)
-    except RuntimeError as e:
+    except RuntimeError:  # as e:
         clim_reg_mpts = match_coords_precision(clim_reg_mpts, tag_reg_mpts)
 
     # clim_reg_mpts = clim_reg_mpts.where(~np.isnan(tag_reg_mpts)).compute()

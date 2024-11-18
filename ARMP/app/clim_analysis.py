@@ -2,6 +2,7 @@ from dataclasses import asdict
 from itertools import product
 
 from ARMP.io.output import write_json_file
+from ARMP.io.printting import print_case
 from ARMP.lib.control import iter_list, make_case
 from ARMP.lib.convention import Case_clim
 from ARMP.stats.clim_count import Clim_count_mf
@@ -13,6 +14,8 @@ def Clim_analysis(dic, setting):
 
     for combi in product(*layout_pool):
         case = make_case(Case_clim, combi, dic)
+
+        print_case(case, var=case.fn_var_out)
 
         kwargs = {**asdict(case), **asdict(setting)}
 

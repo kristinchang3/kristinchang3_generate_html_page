@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 from matplotlib import transforms
 from matplotlib.colors import ListedColormap
 
-from ARMP.io.input import extract_dict, read_json_file, flatten_layout
+from ARMP.io.input import extract_dict, flatten_layout, read_json_file
 from ARMP.lib.loader import dic
 
 

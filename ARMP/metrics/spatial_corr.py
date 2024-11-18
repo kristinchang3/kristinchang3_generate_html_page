@@ -1,13 +1,13 @@
+import math
+
 import numpy as np
-from eofs.xarray import Eof
 import scipy.stats as stats
-import math
-import math
-from ARMP.io.input import nc_in
-from ARMP.lib.temporal import season_group, dim_year_to_time
-from ARMP.metrics.ne import calculate_pvalue
-from ARMP.lib.spatial import match_coords_precision
+from eofs.xarray import Eof
 from scipy.stats import pearsonr
+
+from ARMP.io.input import nc_in
+from ARMP.lib.spatial import match_coords_precision
+from ARMP.lib.temporal import dim_year_to_time, season_group
 
 
 def Ne(da_grp):
@@ -27,11 +27,10 @@ def Ne(da_grp):
     for i, var in enumerate(variance):
         total_var += var
         if total_var >= 0.99999:
-            #print("i = ", i + 1)
-            #print("variance = ", var.values, " %")
+            # print("i = ", i + 1)
+            # print("variance = ", var.values, " %")
             return i
             # break
-
 
 
 def calculate_pvalue(r, da_grp):
@@ -53,9 +52,17 @@ def calculate_pvalue(r, da_grp):
     return pvalue
 
 
-
-def spatial_corr(mp, mp_ref, ne=False, mpts=None, season_month=None, fn_var_out=None, case_name=None, dir_out=None, **kwargs):
-
+def spatial_corr(
+    mp,
+    mp_ref,
+    ne=False,
+    mpts=None,
+    season_month=None,
+    fn_var_out=None,
+    case_name=None,
+    dir_out=None,
+    **kwargs
+):
     mp = match_coords_precision(mp, mp_ref)
 
     mp_1d = mp.to_numpy().flatten()
@@ -70,4 +77,3 @@ def spatial_corr(mp, mp_ref, ne=False, mpts=None, season_month=None, fn_var_out=
         pvalue = calculate_pvalue(corr, mpts_grp)
 
     return corr, pvalue
-

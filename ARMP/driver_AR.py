@@ -9,6 +9,8 @@ from ARMP.app.plot_diagnostic import plot_diagnostic
 from ARMP.app.plot_metrics import plot_metrics
 from ARMP.lib.loader import dic, setting
 
+# ##import ARMP
+
 
 def run_ARMP(dic, setting, var_stats="freq", ref=False):
     """
@@ -29,7 +31,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 
     if dic["metric_character"]:
         # calculate AR characteristics metrics
-        print("run stats/blobstats.py")
+        print("\nrun stats/blobstats.py")
         AR_character_stats_json(dic, "metric_character")
         AR_character_bias(dic, "metric_character")
 
@@ -39,7 +41,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 
     if dic["metric_iou"]:
         # calculate IOU for specific case
-        print("run app/ar_iou.py with user defined cases")
+        print("\nrun app/ar_iou.py with user defined cases")
 
     if dic["include_clim"]:
         # calculate climate metrics
@@ -53,7 +55,10 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
         # make diagnostics plot
         plot_diagnostic(dic)
 
+    print("\nJob done!")
+
 
 # --------------------------
 if __name__ == "__main__":
+    # print_armp()
     run_ARMP(dic, setting, var_stats="freq", ref=True)

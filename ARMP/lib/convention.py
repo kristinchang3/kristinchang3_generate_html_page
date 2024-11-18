@@ -1,5 +1,6 @@
 """ preprocessing, formatting and standardizing input data"""
 from dataclasses import dataclass, field
+from typing import Any, Tuple, Union
 
 import numpy as np
 import xcdat as xc
@@ -59,6 +60,7 @@ class Case_clim:
     fn_var_out: str = field(default=None)
     fn_freq: str = field(default=None)
     fn_list: str = field(default=None)
+    unit_adjust: Union[Tuple[Any, ...], bool, str] = field(default=False)
 
     def update(self, updates):
         for key, value in updates.items():

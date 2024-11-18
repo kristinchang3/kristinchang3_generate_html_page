@@ -4,14 +4,14 @@
         "ERA5": {
             "Mundhenk": {
                 "California": {
-                    "annual": {}
+                    "NDJFM": {}
                 }
             }
         },
         "CanESM2": {
             "Mundhenk": {
                 "California": {
-                    "annual": {}
+                    "NDJFM": {}
                 }
             }
         }

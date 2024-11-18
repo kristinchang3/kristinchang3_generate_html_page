@@ -1,14 +1,15 @@
 import os
 
 import matplotlib
-#import matplotlib.ticker.FormatStrFormatter as FormatStrFormatter
-from matplotlib.ticker import StrMethodFormatter
 import numpy as np
 from matplotlib import pyplot as plt
+from matplotlib.ticker import StrMethodFormatter
 
-from ARMP.io.input import extract_dict, read_json_file, flatten_layout
+from ARMP.io.input import extract_dict, flatten_layout, read_json_file
 from ARMP.lib.loader import dic
 from ARMP.utils.portrait_plot import metric_plot
+
+#### import matplotlib.ticker.FormatStrFormatter as FormatStrFormatter
 
 
 def metric_plot_correlation(
@@ -46,7 +47,7 @@ def metric_plot_correlation(
     # y = np.arange(matrix.shape[0] + 1)
     # ax.pcolor(x, y, np.where((zscore >= -1.96) & (zscore < 1.96), matrix, np.nan), ec=None, lw=0.01, hatch='/////', alpha=0)
 
-    #cbar.ax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
+    # cbar.ax.yaxis.set_major_formatter(FormatStrFormatter("%.2f"))
     cbar.ax.yaxis.set_major_formatter(StrMethodFormatter("{x:.2f}"))
     ax.grid(which="minor", color="k", linestyle="-", linewidth=0.01)
     im.set_clim(minvalue, maxvalue)

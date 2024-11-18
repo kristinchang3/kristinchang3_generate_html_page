@@ -11,6 +11,7 @@ def Clim_metrics_bias(dic, metric, var_stats):
     add bias result to metrics json file
     e.g., metric_freq, metric_peak_day
     """
+    print(f"\ncalculating bias metrics for {dic['clim_var_out']} {var_stats}")
 
     layout_pool, model_ref = iter_list_ref(dic)
 

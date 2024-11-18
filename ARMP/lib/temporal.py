@@ -1,7 +1,7 @@
+import cftime
 import numpy as np
 import pandas as pd
 import xarray as xr
-import cftime
 
 
 def time_select(ds_tag_reg, start_date, end_date, **kwargs):
@@ -48,16 +48,15 @@ def adjust_season(da, months):
     adjustment_months = get_adjustment_months(months)
 
     if not adjustment_months:
-        return da 
+        return da
 
-    if isinstance(da.coords['time'].values[0], cftime.datetime):
-
-        #calendar = da.coords['time'].attrs.get("calendar", "standard")
-        #if calendar == "360_day":
+    if isinstance(da.coords["time"].values[0], cftime.datetime):
+        # calendar = da.coords['time'].attrs.get("calendar", "standard")
+        # if calendar == "360_day":
         #    da = da.convert_calendar('standard', align_on="year")
-        
-        time = da.coords['time']
-        
+
+        time = da.coords["time"]
+
         years = np.array([t.year for t in time.values])
         months = np.array([t.month for t in time.values])
         days = np.array([t.day for t in time.values])
@@ -74,15 +73,19 @@ def adjust_season(da, months):
         # )
 
         adjusted_time = pd.to_datetime(
-            [f"{year}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}" for year, month, day, hour, minute, second in zip(adjusted_years, months, days, hours, minutes, seconds)],
-            errors='coerce'  # Automatically handle invalid dates by returning NaT
+            [
+                f"{year}-{month:02d}-{day:02d}T{hour:02d}:{minute:02d}:{second:02d}"
+                for year, month, day, hour, minute, second in zip(
+                    adjusted_years, months, days, hours, minutes, seconds
+                )
+            ],
+            errors="coerce",  # Automatically handle invalid dates by returning NaT
         )
 
         adjusted_time = np.array(adjusted_time)
-        
-    else:
 
-        time = da.coords['time']
+    else:
+        time = da.coords["time"]
         adjusted_years = time.dt.year.copy()
 
         # Adjust the year for specified months to the next year
@@ -102,20 +105,19 @@ def adjust_season(da, months):
             ]
         )
 
-    
-    da.coords['time'] = ('time', adjusted_time)
+    da.coords["time"] = ("time", adjusted_time)
 
     return da
 
 
-def season_group(da, months, group='year'):
+def season_group(da, months, group="year"):
     """
     seasonal average
     with treatment for season spanning two years e.g. DJF
     """
     da = adjust_season(da, months)
     da_grp = da.groupby(f"time.{group}")
-    da_grp_mean = da_grp.mean(dim='time')
+    da_grp_mean = da_grp.mean(dim="time")
 
     return da_grp_mean
 
@@ -124,10 +126,12 @@ def dim_year_to_time(da_grp_mean):
     """
     convert 'year' dim and coords to 'time'
     """
-    time_index = pd.to_datetime(da_grp_mean['year'], format='%Y')
-    time_index = pd.DatetimeIndex([str(year) + '-01-01' for year in da_grp_mean['year'].values])
-    da_grp_mean = da_grp_mean.swap_dims({'year': 'time'})
-    da_grp_mean['time'] = time_index
+    time_index = pd.to_datetime(da_grp_mean["year"], format="%Y")
+    time_index = pd.DatetimeIndex(
+        [str(year) + "-01-01" for year in da_grp_mean["year"].values]
+    )
+    da_grp_mean = da_grp_mean.swap_dims({"year": "time"})
+    da_grp_mean["time"] = time_index
 
     return da_grp_mean
 

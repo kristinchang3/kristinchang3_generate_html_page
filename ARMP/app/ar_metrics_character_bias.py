@@ -11,8 +11,10 @@ from ARMP.lib.loader import dic
 
 def AR_character_bias(dic, metric):
     """
-    add AR characteristics bias result to metrics json file
+    AR characteristics bias, add result to metrics json file
     """
+    print("\ncalculating metrics on AR characteristics")
+
     field_list = ["lat", "lon", "area", "width", "length"]
 
     update_json_ref(dic, metric)

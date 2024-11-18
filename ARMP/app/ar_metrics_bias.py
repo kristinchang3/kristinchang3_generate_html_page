@@ -12,6 +12,8 @@ def AR_metrics_bias(dic, metric, var_stats):
     e.g., metric_freq, metric_peak_day
     """
 
+    print(f"\ncalculating AR bias metrics on {var_stats}")
+
     layout_pool, model_ref = iter_list_ref(dic)
 
     for combi in product(*layout_pool):

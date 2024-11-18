@@ -1,2 +1,2 @@
-precip_1997.nc
-precip_1998.nc
+demo/data/precip_1997.nc
+demo/data/precip_1998.nc

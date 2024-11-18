@@ -51,7 +51,7 @@ def AR_character_stats(fn_in, field_list):
 
 def AR_character_stats_json(dic, metric):
     """
-    add AR characteristics stats to json file
+    calculate and add AR characteristics stats to json file
     """
     field_list = ["lat", "lon", "area", "width", "length"]
 

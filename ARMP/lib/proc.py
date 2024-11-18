@@ -1,7 +1,8 @@
+import os
+
 import numpy as np
 import pandas as pd
 import xarray as xr
-import os
 
 from ARMP.lib.convention import coords_fmt
 from ARMP.lib.spatial import land_sea_mask

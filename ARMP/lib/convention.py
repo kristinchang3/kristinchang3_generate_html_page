@@ -80,7 +80,7 @@ class Setting:
     end_date: str = field(default=None)
     target_freq: str = field(default=None)
     mask_lndocn: str = field(default=None)
-    dir_in: str = field(default="demo/data")
+    dir_in: str = field(default="data")
     dir_out: str = field(default="output")
     dir_fig: str = field(default="figures")
     debug: bool = field(default=False)

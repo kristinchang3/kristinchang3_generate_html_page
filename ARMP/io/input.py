@@ -27,7 +27,7 @@ def current_dir():
 
 def unpack_fn_list(fn_list, base_dir=None):
     """
-    Reads file paths from fn_list txt file, resolves them to absolute paths (if necessary),
+    Reads file paths from fn_list in file, resolves them to absolute paths (if necessary),
     and return a list of file paths.
     """
     with open(fn_list, "r") as f:
@@ -57,7 +57,7 @@ def unpack_fn_list(fn_list, base_dir=None):
 
 # def unpack_fn_list(fn_list):
 #    """
-#    fn_list is a .txt file contains filenames
+#    fn_list is a .in file contains filenames
 #    unpack it as a list of filenames
 #    """
 #    with open(fn_list, "r") as f:

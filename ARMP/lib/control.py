@@ -108,7 +108,7 @@ def make_case(dataclass, combi, dic):
         # case_name = "_".join(combi)
         case_name = "{}_tag".format("_".join(combi))
         # fn_in = "{}_tag_list.txt".format('_'.join(combi[0:2]))
-        fn_in = "{}_tag_list.txt".format(
+        fn_in = "{}_tag_list.in".format(
             "_".join((layout_dic["model"], layout_dic["ARDT"]))
         )
         fn_list = os.path.join(dic["dir_in"], fn_in)
@@ -128,7 +128,7 @@ def make_case(dataclass, combi, dic):
 
         case_name = "{}_{}".format("_".join(combi), dic["clim_var_out"])
         # fn_in = "{}_{}_clim_list.txt".format(combi[0], dic['clim_var_out'])
-        fn_in = "{}_{}_clim_list.txt".format(layout_dic["model"], dic["clim_var_out"])
+        fn_in = "{}_{}_clim_list.in".format(layout_dic["model"], dic["clim_var_out"])
         fn_list = os.path.join(dic["dir_in"], fn_in)
 
         case.clim_list = fn_list

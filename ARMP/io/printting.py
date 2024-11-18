@@ -1,6 +1,10 @@
 import os
 
-from ARMP.params.config import project_name
+from ARMP.lib.loader import dic
+
+# ##from ARMP.params.config import project_name
+# print("\ndic = ",dic)
+project_name = dic["project_name"]
 
 
 def str_print(input_string):

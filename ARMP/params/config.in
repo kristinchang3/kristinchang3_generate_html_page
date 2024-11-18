@@ -1,4 +1,3 @@
-from ARMP.io.input import set_dir
 
 project_name = "ARMP demo project with dummmy data 11/11/2024"
 
@@ -57,9 +56,9 @@ make_plot = True  # produce metric or diagnostic figures along with job run
 
 
 # ======== input, output, figure dir =========
-dir_in = set_dir("data")
-dir_out = set_dir("output")
-dir_fig = set_dir("figure")
+dir_in = "data"
+dir_out = "output"
+dir_fig = "figure"
 
 
 # ======= save processed AR and climate data as .nc file ========

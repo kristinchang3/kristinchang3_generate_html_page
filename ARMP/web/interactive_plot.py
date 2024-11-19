@@ -1,31 +1,14 @@
 import json
 import math
 import os
+from pathlib import Path
 
 import holoviews as hv
-import hvplot.pandas
-import matplotlib as plt
-import matplotlib.colors as mcolors
-import numpy as np
 import pandas as pd
-from bokeh.io import show
-from bokeh.layouts import row
-from bokeh.models import (
-    ColorBar,
-    ColumnDataSource,
-    Grid,
-    HoverTool,
-    HTMLLabel,
-    Label,
-    LinearColorMapper,
-    LogColorMapper,
-    LogTicker,
-    Rect,
-)
+from bokeh.models import HoverTool, HTMLLabel
 from bokeh.palettes import RdBu, diverging_palette, interp_palette
 from bokeh.plotting import figure
 from matplotlib import pyplot as plt
-from pathlib import Path
 from PIL import Image
 from pylab import *
 

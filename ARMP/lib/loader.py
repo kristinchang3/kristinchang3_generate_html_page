@@ -1,4 +1,5 @@
 import importlib.resources
+import os
 from pathlib import Path
 
 from ARMP.io.input import set_dir
@@ -17,12 +18,24 @@ from ARMP.lib.convention import Setting
 package = "ARMP"
 base_dir = importlib.resources.files(package)
 
+print("base_dir:", base_dir)
+
 # package_params = importlib.import_module(f'{package}.params')
 # config_file = importlib.resources.files(package_params) / "config.in"
 # config_file = config_file.resolve()
 
 config_file = set_dir("params/config.in")
-print("zzzzz ", config_file)
+if os.path.exists(config_file):
+    print("config_file:", config_file)
+else:
+    print("config_file not found:", config_file)
+    config_file = os.path.join(base_dir, "ARMP/params/config.in")
+    print("config_file:", config_file)
+    if os.path.exists(config_file):
+        print("config_file found:", config_file)
+    else:
+        print("config_file not found:", config_file)
+
 
 with open(config_file, "r") as f:
     params_in = f.read()

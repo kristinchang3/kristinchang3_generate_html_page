@@ -9,6 +9,7 @@ Dong, B., P. Ullrich, J. Lee, P. Gleckler, K. Chang, T. A. O’Brien, 2024: Eval
 Please see the [Wiki](https://github.com/PCMDI/ARMP/wiki) tab of this GitHub repository, which include the following pages.
 
 * [Installation](https://github.com/PCMDI/ARMP/wiki/Installation)
+* [User manual](https://github.com/PCMDI/ARMP/wiki/User-Instructions)
 * [Known issue](https://github.com/PCMDI/ARMP/wiki/Known-issues)
 
 ## Key Dependencies

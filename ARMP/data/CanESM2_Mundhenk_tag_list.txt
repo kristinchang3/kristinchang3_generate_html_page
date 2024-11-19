@@ -1,2 +1,0 @@
-AR_tag_1997.nc
-AR_tag_1998.nc

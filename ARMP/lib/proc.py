@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import pandas as pd
 import xarray as xr
@@ -9,7 +11,10 @@ from ARMP.lib.spatial import land_sea_mask
 def init_ds(fn_list, region, mask_lndocn, fn_var, **kwargs):  # , lev=85000):
     with open(fn_list, "r") as f_tag:
         first_line = f_tag.readline().strip()
-        ds_tag = xr.open_dataset(first_line)
+        fn_dir = os.path.dirname(fn_list)
+        first_file = os.path.join(fn_dir, first_line)
+
+        ds_tag = xr.open_dataset(first_file)
 
         lats, latn, lonw, lone, ds_tag = coords_fmt(ds_tag, region, **kwargs)
 

@@ -1,7 +1,6 @@
 import matplotlib
 
 matplotlib.use("Agg")  # noqa
-
 import os  # noqa
 from itertools import product  # noqa
 
@@ -13,6 +12,8 @@ from ARMP.io.output import update_dict_ref  # noqa
 from ARMP.io.printting import str_fn, str_print  # noqa
 from ARMP.lib.control import iter_list, iter_list_ref, make_case  # noqa
 from ARMP.lib.convention import Case  # noqa
+from ARMP.lib.loader import dic  # noqa
+
 
 
 def histogram_peak_day(
@@ -37,9 +38,10 @@ def histogram_peak_day(
 
     plt.bar(xt, yr, yerr=count_std)
 
-    nyear = len(count_ens)
+    nyear = len(count_ens[0])
     for j in range(nyear):
-        plt.plot(xt, count_ens[j], "o", markersize=2, color="k")
+        count_ens_year = [lst[j] for lst in count_ens]
+        plt.plot(xt, count_ens_year, "o", markersize=2, color="k")
 
     if ref:
         results_ref = dict_in["REF"][model_ref][ARDT][region][season]
@@ -54,7 +56,7 @@ def histogram_peak_day(
     fig_filename = (
         "histogram_AR_count_" + model + "_" + str_fn(region) + "_" + ARDT + "_" + season
     )
-    plt.savefig(os.path.join(dic["dir_fig"], fig_filename, ".png"), dpi=300)
+    plt.savefig(os.path.join(dic["dir_fig"], fig_filename) + ".png", dpi=300)
 
     plt.close()
 
@@ -66,36 +68,37 @@ def plot_histogram_peak_day(dic, metric, ref=False):
     else:
         layout_pool, model_ref = iter_list_ref(dic)
 
-        for combi in product(*layout_pool):
-            case = make_case(Case, combi, dic)
+    for combi in product(*layout_pool):
+        case = make_case(Case, combi, dic)
 
-            model = case.model
-            ARDT = case.ARDT
-            region = case.region
-            season = case.season
+        model = case.model
+        ARDT = case.ARDT
+        region = case.region
+        season = case.season
 
-            dict_in = read_json_file(dic, metric)
+        dict_in = read_json_file(dic, metric)
 
-            if not ref:
-                histogram_peak_day(dic, dict_in, model, ARDT, region, season)
+        if not ref:
+            histogram_peak_day(dic, dict_in, model, ARDT, region, season)
 
-            else:
-                dict_in = update_dict_ref(dic, dict_in)
-                histogram_peak_day(
-                    dic,
-                    dict_in,
-                    model,
-                    ARDT,
-                    region,
-                    season,
-                    ref=ref,
-                    model_ref=model_ref,
-                )
+        else:
+            dict_in = update_dict_ref(dic, dict_in)
+            histogram_peak_day(
+                dic,
+                dict_in,
+                model,
+                ARDT,
+                region,
+                season,
+                ref=ref,
+                model_ref=model_ref,
+            )
 
 
-# if __name__ == "__main__":
-#    metric = "metric_peak_day"
-#
-#    if not dic["diag_peak_day_histogram"]:
-#        # raise FileNotFoundError(f"The file '{file_path}' does not exist.")
-#        raise NameError("diag_peak_day_histogram not True")
+if __name__ == "__main__":
+    metric = "metric_peak_day"
+    #
+    #    if not dic["diag_peak_day_histogram"]:
+    #        # raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+    #        raise NameError("diag_peak_day_histogram not True")
+    plot_histogram_peak_day(dic, metric)

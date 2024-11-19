@@ -4,13 +4,16 @@ from ARMP.io.input import read_json_file
 from ARMP.io.output import update_dict_ref, update_json_file
 from ARMP.lib.control import iter_list_ref, make_case
 from ARMP.lib.convention import Case
+from ARMP.lib.loader import dic
 
 
-def AR_metrics_bias(dic, metric, var_stats):
+def AR_metrics_bias(metric, var_stats, dic=dic):
     """
     add bias result to metrics json file
     e.g., metric_freq, metric_peak_day
     """
+
+    print(f"\ncalculating AR bias metrics on {var_stats}")
 
     layout_pool, model_ref = iter_list_ref(dic)
 

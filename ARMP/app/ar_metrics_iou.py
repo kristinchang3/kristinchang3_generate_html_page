@@ -15,6 +15,8 @@ def AR_IOU(dic, case_name, case_name_ref):
 
 
 if __name__ == "__main__":
+    print("\ncalculating IOU metrics of AR time series")
+
     model = dic["model_list"][1]
     ARDT = dic["ARDT_list"][1]
     ARDT_ref = dic["ARDT_list"][0]

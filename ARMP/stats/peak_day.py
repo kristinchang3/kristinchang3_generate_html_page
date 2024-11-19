@@ -2,7 +2,8 @@ import numpy as np
 
 
 def LFAR_mthly_ts(da_occur_ts):
-    occur_ts_rsp = da_occur_ts.resample(time="1M")
+    # occur_ts_rsp = da_occur_ts.resample(time="1M")
+    occur_ts_rsp = da_occur_ts.resample(time="1ME")
 
     occur_ts_mthly = occur_ts_rsp.sum()
     # occur_ts_mthly = occur_ts_mthly.dropna(dim='time', how='all') # for non-annual data!!!

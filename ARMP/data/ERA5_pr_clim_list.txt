@@ -1,2 +1,0 @@
-precip2_1997.nc
-precip2_1998.nc

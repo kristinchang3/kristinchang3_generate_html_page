@@ -1,0 +1,266 @@
+{
+    "REF": {},
+    "RESULTS": {
+        "BCC-CSM2-MR": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.96
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.95
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.89
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.99
+                    }
+                }
+            }
+        },
+        "CanESM2": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.93
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.96
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                }
+            }
+        },
+        "CCSM4": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.94
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.93
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.89
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                }
+            }
+        },
+        "CSIRO-Mk3-6-0": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.93
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.88
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.94
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                }
+            }
+        },
+        "NorESM1-M": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.91
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.93
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.96
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.87
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                }
+            }
+        },
+        "MRI-ESM2-0": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.9
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.96
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.97
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                }
+            }
+        },
+        "IPSL-CM51-LR": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.95
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.81
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.94
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.87
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.82
+                    }
+                }
+            }
+        },
+        "IPSL-CM5B-LR": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.91
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.89
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.9
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.91
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.92
+                    }
+                }
+            }
+        },
+        "IPSLCM61-LR": {
+            "TE": {
+                "N Pacific": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                },
+                "S Pacific": {
+                    "annual": {
+                        "corr": 0.94
+                    }
+                },
+                "N Atlantic": {
+                    "annual": {
+                        "corr": 0.96
+                    }
+                },
+                "S Atlantic": {
+                    "annual": {
+                        "corr": 0.94
+                    }
+                },
+                "Indian Ocean": {
+                    "annual": {
+                        "corr": 0.98
+                    }
+                }
+            }
+        }
+    }
+}

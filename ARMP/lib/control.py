@@ -2,7 +2,12 @@ import os
 from dataclasses import fields
 
 from ARMP.lib.convention import Case, Case_clim
-from ARMP.lib.loader import init_dataclass
+
+
+def init_dataclass(dc, dic):
+    keys = dc.__annotations__.keys()
+    subset = {key: dic[key] for key in keys if key in dic}
+    return dc(**subset)
 
 
 def modify_list_keys(dictionary):
@@ -28,7 +33,7 @@ def iter_list(dic, ext="_list"):
     # for field in layout:
     for field in dic["layout"]:
         # lst = globals().get(field + ext, None)
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         layout_pool.append(lst)
     return layout_pool
 
@@ -36,20 +41,28 @@ def iter_list(dic, ext="_list"):
 def iter_list_ref(dic, ext="_list"):
     layout_pool = []
     for field in dic["layout"]:
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         if field == "model":
-            model_ref = lst.pop(0)
-        layout_pool.append(lst)
+            #    model_ref = lst.pop(0)
+            # layout_pool.append(lst)
+            model_ref = lst[0]
+            layout_pool.append(lst[1:])
+        else:
+            layout_pool.append(lst)
     return layout_pool, model_ref
 
 
 def iter_list_ref_ARDT(dic, ext="_list"):
     layout_pool = []
     for field in dic["layout"]:
-        lst = dic.get(field + ext).copy()
+        lst = dic.get(field + ext)  # .copy()
         if field == "ARDT":
-            ARDT_ref = lst.pop(0)
-        layout_pool.append(lst)
+            #    ARDT_ref = lst.pop(0)
+            # layout_pool.append(lst)
+            ARDT_ref = lst[0]
+            layout_pool.append(lst[1:])
+        else:
+            layout_pool.append(lst)
     return layout_pool, ARDT_ref
 
 
@@ -100,7 +113,7 @@ def make_case(dataclass, combi, dic):
         # case_name = "_".join(combi)
         case_name = "{}_tag".format("_".join(combi))
         # fn_in = "{}_tag_list.txt".format('_'.join(combi[0:2]))
-        fn_in = "{}_tag_list.txt".format(
+        fn_in = "{}_tag_list.in".format(
             "_".join((layout_dic["model"], layout_dic["ARDT"]))
         )
         fn_list = os.path.join(dic["dir_in"], fn_in)
@@ -120,7 +133,7 @@ def make_case(dataclass, combi, dic):
 
         case_name = "{}_{}".format("_".join(combi), dic["clim_var_out"])
         # fn_in = "{}_{}_clim_list.txt".format(combi[0], dic['clim_var_out'])
-        fn_in = "{}_{}_clim_list.txt".format(layout_dic["model"], dic["clim_var_out"])
+        fn_in = "{}_{}_clim_list.in".format(layout_dic["model"], dic["clim_var_out"])
         fn_list = os.path.join(dic["dir_in"], fn_in)
 
         case.clim_list = fn_list

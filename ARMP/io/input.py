@@ -8,25 +8,84 @@ import xarray as xr
 
 
 def set_dir(folder):
-    # Define the path for the 'data' directory
+    """
+    set absolute directory path for a specific folder in ARMP
+    """
+    # Define the path for the 'data' directory as structured in ARMP
     data_dir = Path(__file__).parent.parent / folder
     # Create the directory with parents and without raising an error if it exists
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir
 
 
-def unpack_fn_list(fn_list):
+def current_dir():
+    """get absolute path for current script dir"""
+    script_path = os.path.abspath(__file__)
+    script_dir = os.path.dirname(script_path)
+    return script_dir
+
+
+# def load_config(dictionary):
+#    for key, value in dictionary.items():
+#        globals()[key] = value
+
+
+def load_config(dictionary, global_namespace):
+    for key, value in dictionary.items():
+        global_namespace[key] = value
+
+
+def unpack_fn_list(fn_list, base_dir=None):
     """
-    fn_list is a .txt file contains filenames
-    unpack it as a list of filenames
+    Reads file paths from fn_list in file, resolves them to absolute paths (if necessary),
+    and return a list of file paths.
     """
     with open(fn_list, "r") as f:
-        file_list = [line.strip() for line in f]
+        # file_list = [line.strip() for line in f]
+        file_list = [line.strip() for line in f.readlines()]
 
-    fn_dir = os.path.dirname(fn_list)
-    absolute_file_list = [os.path.join(fn_dir, file_name) for file_name in file_list]
+    path_list = []
 
-    return absolute_file_list
+    for path in file_list:
+        path_obj = Path(path)  # Convert to Path object
+
+        # Check if path is absolute or relative
+        if path_obj.is_absolute():
+            full_file_path = path_obj.resolve()  # If absolute, resolve it
+        else:
+            # If relative, resolve it using the base_dir
+            if base_dir:
+                full_file_path = (base_dir / path_obj).resolve()
+            else:
+                print(f"Error: Base directory not provided for relative path: {path}")
+                continue
+
+        path_list.append(full_file_path)
+
+    return path_list
+
+
+# def unpack_fn_list(fn_list):
+#    """
+#    fn_list is a .in file contains filenames
+#    unpack it as a list of filenames
+#    """
+#    with open(fn_list, "r") as f:
+#        file_list = [line.strip() for line in f]
+#
+#    fn_dir = os.path.dirname(fn_list)
+#    absolute_file_list = [os.path.join(fn_dir, file_name) for file_name in file_list]
+#
+#    return absolute_file_list
+
+
+def flatten_layout(metric_layout):
+    metric_layout_flatten = [
+        item if isinstance(item, (tuple, list)) else [item]
+        for item in metric_layout
+        # item if isinstance(item, (tuple,list)) else (item,) for item in metric_layout
+    ]
+    return metric_layout_flatten
 
 
 # def create_variables_dict(model, ARDT, region, season, **kwargs):
@@ -100,6 +159,7 @@ def extract_dict(nested_dict, key_layers, target_key):
         return nested_dict
 
     layer_combinations = list(product(*key_layers))
+    # print("\n layer_combinations = " , layer_combinations)
 
     # List to collect the values for the specified target_key
     result = []
@@ -111,11 +171,14 @@ def extract_dict(nested_dict, key_layers, target_key):
             nested_dict, combination[:-1]
         )  # All but the last key
 
+        # print("\ndata_at_layer  =  ", data_at_layer)
         # Extract the data corresponding to the target key from the last layer
         final_key = combination[
             -1
         ]  # The final layer key (e.g., 'California' or 'Mundhenk')
         final_layer_data = data_at_layer.get(final_key, {})
+        # print("\nfinal key = ", final_key)
+        # print("\nfinal layer data =  ", final_layer_data)
 
         # Append the value for the target key (or None if not found)
         if target_key:

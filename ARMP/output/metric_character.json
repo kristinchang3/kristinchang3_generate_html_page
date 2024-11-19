@@ -1,0 +1,19 @@
+{
+    "REF": {},
+    "RESULTS": {
+        "ERA5": {
+            "Mundhenk": {
+                "California": {
+                    "annual": {}
+                }
+            }
+        },
+        "CanESM2": {
+            "Mundhenk": {
+                "California": {
+                    "annual": {}
+                }
+            }
+        }
+    }
+}

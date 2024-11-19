@@ -6,12 +6,14 @@ import numpy as np
 
 def detect_calendar(da):
     """Detects the calendar type from an xarray DataArray."""
-    time_var = da["time"]
+    # time_var = da["time"]
+    time_var = da.coords["time"]
 
     # Check if time is encoded using cftime (for custom calendars like NoLeap)
     if isinstance(time_var.values[0], cftime.datetime):
         # Return calendar type (e.g., 'noleap', '365_day', etc.)
-        return time_var.encoding.get("calendar", "standard")
+        # return time_var.encoding.get("calendar", "standard")
+        return time_var.attrs.get("calendar", "standard")
     elif isinstance(time_var.values[0], np.datetime64):
         # For standard datetime64, return 'datetime64'
         return "datetime64"

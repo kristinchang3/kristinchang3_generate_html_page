@@ -23,6 +23,7 @@ repos:
       rev: 23.3.0
       hooks:
           - id: black
+            exclude: ^ARMP/params/config.py$
 
     - repo: https://github.com/timothycrosley/isort
       rev: 5.13.2
@@ -39,3 +40,6 @@ repos:
           - id: flake8
             args: ["--config=setup.cfg"]
             additional_dependencies: [flake8-isort]
+            #exclude: 'config.py|ARMP/params/'
+            #exclude: ^ARMP/params/config.py$
+            exclude: ^ARMP/params/config.in$

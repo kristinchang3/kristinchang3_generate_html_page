@@ -71,7 +71,9 @@ def unpack_fn_list(fn_list, base_dir=None):
 
 def flatten_layout(metric_layout):
     metric_layout_flatten = [
-        item if isinstance(item, list) else [item] for item in metric_layout
+        item if isinstance(item, (tuple, list)) else [item]
+        for item in metric_layout
+        # item if isinstance(item, (tuple,list)) else (item,) for item in metric_layout
     ]
     return metric_layout_flatten
 
@@ -147,6 +149,7 @@ def extract_dict(nested_dict, key_layers, target_key):
         return nested_dict
 
     layer_combinations = list(product(*key_layers))
+    # print("\n layer_combinations = " , layer_combinations)
 
     # List to collect the values for the specified target_key
     result = []
@@ -158,11 +161,14 @@ def extract_dict(nested_dict, key_layers, target_key):
             nested_dict, combination[:-1]
         )  # All but the last key
 
+        # print("\ndata_at_layer  =  ", data_at_layer)
         # Extract the data corresponding to the target key from the last layer
         final_key = combination[
             -1
         ]  # The final layer key (e.g., 'California' or 'Mundhenk')
         final_layer_data = data_at_layer.get(final_key, {})
+        # print("\nfinal key = ", final_key)
+        # print("\nfinal layer data =  ", final_layer_data)
 
         # Append the value for the target key (or None if not found)
         if target_key:

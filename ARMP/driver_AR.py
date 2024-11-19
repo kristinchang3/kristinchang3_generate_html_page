@@ -16,6 +16,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
     """
     set ref=True if inclduing reference data in the diagnostic plot
     """
+
     # AR frequency/count analysis from tag files
     if not dic["restart"]:
         AR_frequency(dic, setting)
@@ -61,4 +62,5 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 # --------------------------
 if __name__ == "__main__":
     # print_armp()
+    print("Job starts!")
     run_ARMP(dic, setting, var_stats="freq", ref=True)

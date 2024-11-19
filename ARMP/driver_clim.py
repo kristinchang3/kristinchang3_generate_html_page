@@ -17,6 +17,8 @@ def run_ARMP_clim(dic, setting, var_stats="mean"):
     # calculate climate metrics
     Clim_metrics_bias(dic, "metric_clim", var_stats)
 
+    print("\nARMP_clim done!")
+
 
 # --------------------------
 if __name__ == "__main__":

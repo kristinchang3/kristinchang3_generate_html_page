@@ -1,6 +1,7 @@
+from pathlib import Path
+
 from ARMP.io.input import set_dir
 from ARMP.lib.convention import Setting
-from pathlib import Path
 
 # ##import ARMP.params.config as config
 # ##import json
@@ -10,7 +11,7 @@ from pathlib import Path
 # current_dir = Path(__file__).parent.parent
 # config_file_path = current_dir / "params" / "config.in"
 
-#config_file_path = "params/config.in"
+# config_file_path = "params/config.in"
 base_dir = Path(__file__).parent.parent
 config_file_path = (base_dir / "params/config.in").resolve()
 

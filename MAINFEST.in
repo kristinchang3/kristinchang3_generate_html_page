@@ -1,3 +1,6 @@
 include ARMP/ARMP/data/.keep
 include ARMP/ARMP/output/.keep
 include ARMP/ARMP/figure/.keep
+include ARMP/params/config.in
+recursive-include ARMP *.in
+recursive-include ARMP *.txt

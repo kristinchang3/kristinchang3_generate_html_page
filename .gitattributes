@@ -1,0 +1,2 @@
+doc/*.ipynb linguist-vendored
+*.ipynb linguist-detectable=false

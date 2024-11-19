@@ -7,10 +7,12 @@ from ARMP.io.output import create_json_file, write_json_file
 from ARMP.io.printting import print_case
 from ARMP.lib.control import iter_list, make_case
 from ARMP.lib.convention import Case
+from ARMP.lib.loader import dic, setting
 from ARMP.stats.peak_day import peak_day_stats
 
 
-def AR_frequency(dic, setting):
+def AR_frequency(dic=dic, setting=setting):
+    # def AR_frequency(dic, setting):
     layout_pool = iter_list(dic)
 
     create_json_file(dic)
@@ -58,11 +60,3 @@ def AR_frequency(dic, setting):
                 }
 
                 write_json_file(dic, "metric_peak_day", case, result)
-
-        # if dic['include_clim']:
-        #    return tag_reg_mpts
-
-        # else:
-        #    return None
-
-        # if metric_spatial_corr:

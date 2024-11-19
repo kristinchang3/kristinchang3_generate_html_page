@@ -9,7 +9,7 @@ from ARMP.lib.convention import Case
 from ARMP.lib.loader import dic
 
 
-def AR_character_bias(dic, metric):
+def AR_character_bias(metric, dic=dic):
     """
     AR characteristics bias, add result to metrics json file
     """
@@ -60,4 +60,4 @@ if __name__ == "__main__":
 
     metric = "metric_character"
 
-    AR_character_bias(dic, metric)
+    AR_character_bias(metric)

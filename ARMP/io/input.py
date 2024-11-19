@@ -25,6 +25,16 @@ def current_dir():
     return script_dir
 
 
+# def load_config(dictionary):
+#    for key, value in dictionary.items():
+#        globals()[key] = value
+
+
+def load_config(dictionary, global_namespace):
+    for key, value in dictionary.items():
+        global_namespace[key] = value
+
+
 def unpack_fn_list(fn_list, base_dir=None):
     """
     Reads file paths from fn_list in file, resolves them to absolute paths (if necessary),

@@ -5,7 +5,7 @@ from ARMP.lib.loader import dic, setting
 # ##import ARMP
 
 
-def run_ARMP_clim(dic, setting, var_stats="mean"):
+def run_ARMP_clim(var_stats="mean", dic=dic, setting=setting):
     if not dic["include_clim"]:
         raise NameError("climate variable NOT set in config")
 
@@ -22,4 +22,4 @@ def run_ARMP_clim(dic, setting, var_stats="mean"):
 
 # --------------------------
 if __name__ == "__main__":
-    run_ARMP_clim(dic, setting, var_stats="mean")
+    run_ARMP_clim("mean")

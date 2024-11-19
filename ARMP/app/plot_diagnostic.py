@@ -1,4 +1,7 @@
-def plot_diagnostic(dic):
+from ARMP.lib.loader import dic
+
+
+def plot_diagnostic(dic=dic):
     if dic["diag_peak_day_histogram"]:
         # diagnostic plot for peak day histogram
         print("\ncustom and run graphics/histogram_peak_day.py")

@@ -7,56 +7,58 @@ from ARMP.app.ar_metrics_character_bias import AR_character_bias
 from ARMP.app.ar_metrics_spatial_correlation import AR_spatial_correlation
 from ARMP.app.plot_diagnostic import plot_diagnostic
 from ARMP.app.plot_metrics import plot_metrics
+from ARMP.io.input import load_config
 from ARMP.io.printting import print_armp
 from ARMP.lib.loader import dic, setting
 
-# ##import ARMP
+load_config(dic, globals())
 
 
-def run_ARMP(dic, setting, var_stats="freq", ref=False):
+def run_ARMP(var_stats="freq", ref=False, dic=dic, setting=setting):
     """
     set ref=True if inclduing reference data in the diagnostic plot
     """
     print_armp()
 
     # AR frequency/count analysis from tag files
-    if not dic["restart"]:
-        AR_frequency(dic, setting)
+    if not restart:  # noqa
+        # AR_frequency(dic, setting)
+        AR_frequency()
 
     # workflow on AR metrics
-    if dic["metric_freq"]:
+    if metric_freq:  # noqa
         # calculate AR frequency/count metrics
-        AR_metrics_bias(dic, "metric_freq", var_stats)
+        AR_metrics_bias("metric_freq", "freq")
 
-    if dic["metric_peak_day"]:
+    if metric_peak_day:  # noqa
         # calculate AR peak day metrics
-        AR_metrics_bias(dic, "metric_peak_day", "peak_day")
+        AR_metrics_bias("metric_peak_day", "peak_day")
 
-    if dic["metric_character"]:
+    if metric_character:  # noqa
         # calculate AR characteristics metrics
         print("\nrun stats/blobstats.py")
-        AR_character_stats_json(dic, "metric_character")
-        AR_character_bias(dic, "metric_character")
+        AR_character_stats_json("metric_character")
+        AR_character_bias("metric_character")
 
-    if dic["metric_spatial_corr"]:
+    if metric_spatial_corr:  # noqa
         # calculate AR frequency spatial correlation metrics
-        AR_spatial_correlation(dic, "metric_spatial_corr")
+        AR_spatial_correlation("metric_spatial_corr")
 
-    if dic["metric_iou"]:
+    if metric_iou:  # noqa
         # calculate IOU for specific case
         print("\nrun app/ar_iou.py with user defined cases")
 
-    if dic["include_clim"]:
+    if include_clim:  # noqa
         # calculate climate metrics
-        run_ARMP_clim(dic, setting, var_stats="mean")
+        run_ARMP_clim("mean")
 
     # make metrics and diagnostics plots
-    if dic["make_plot"]:
+    if make_plot:  # noqa
         # make metrics plot
-        plot_metrics(dic)
+        plot_metrics()
 
         # make diagnostics plot
-        plot_diagnostic(dic)
+        plot_diagnostic()
 
     print("\nJob done!")
 
@@ -65,4 +67,4 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
 if __name__ == "__main__":
     # print_armp()
     print("Job starts!")
-    run_ARMP(dic, setting, var_stats="freq", ref=True)
+    run_ARMP()

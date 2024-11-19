@@ -49,7 +49,7 @@ def AR_character_stats(fn_in, field_list):
     return field_dict
 
 
-def AR_character_stats_json(dic, metric):
+def AR_character_stats_json(metric, dic=dic):
     """
     calculate and add AR characteristics stats to json file
     """
@@ -73,4 +73,4 @@ if __name__ == "__main__":
 
     metric = "metric_character"
 
-    AR_character_stats_json(dic, metric)
+    AR_character_stats_json(metric)

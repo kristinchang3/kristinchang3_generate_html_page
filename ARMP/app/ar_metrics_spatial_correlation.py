@@ -9,7 +9,7 @@ from ARMP.lib.loader import dic
 from ARMP.metrics.spatial_corr import spatial_corr
 
 
-def AR_spatial_correlation(dic, metric, ne=False):
+def AR_spatial_correlation(metric, ne=False, dic=dic):
     """
     add AR frequency spatial correlation result to metrics json file
     """
@@ -57,4 +57,4 @@ def AR_spatial_correlation(dic, metric, ne=False):
 
 if __name__ == "__main__":
     metric = "metric_spatial_corr"
-    AR_spatial_correlation(dic, "metric_spatial_corr", ne=True)
+    AR_spatial_correlation("metric_spatial_corr", ne=True)

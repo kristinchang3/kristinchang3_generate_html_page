@@ -15,6 +15,7 @@ from ARMP.lib.convention import Case  # noqa
 from ARMP.lib.loader import dic  # noqa
 
 
+
 def histogram_peak_day(
     dic, dict_in, model, ARDT, region, season, ref=False, model_ref=None
 ):

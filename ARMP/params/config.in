@@ -57,6 +57,7 @@ make_plot = True  # produce metric or diagnostic figures along with job run
 
 # ======== input, output, figure dir =========
 dir_in = "data"
+#dir_in = "/Users/dong12/Pictures/ARMP_dev/v0.0_test/data/"
 dir_out = "output"
 dir_fig = "figure"
 

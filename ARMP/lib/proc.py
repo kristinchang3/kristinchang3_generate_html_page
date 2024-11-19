@@ -1,63 +1,67 @@
-import os
-
 import numpy as np
 import pandas as pd
 import xarray as xr
 
+from ARMP.io.input import unpack_fn_list
 from ARMP.lib.convention import coords_fmt
+from ARMP.lib.loader import base_dir
 from ARMP.lib.spatial import land_sea_mask
 
 
 def init_ds(fn_list, region, mask_lndocn, fn_var, **kwargs):  # , lev=85000):
-    with open(fn_list, "r") as f_tag:
-        first_line = f_tag.readline().strip()
-        fn_dir = os.path.dirname(fn_list)
-        first_file = os.path.join(fn_dir, first_line)
+    # with open(fn_list, "r") as f_tag:
+    #    first_line = f_tag.readline().strip()
+    #    fn_dir = os.path.dirname(fn_list)
+    #    first_file = os.path.join(fn_dir, first_line)
 
-        ds_tag = xr.open_dataset(first_file)
+    path_list = unpack_fn_list(fn_list, base_dir)
 
-        lats, latn, lonw, lone, ds_tag = coords_fmt(ds_tag, region, **kwargs)
+    first_file = path_list[0]
 
-        ds_tag_reg = ds_tag.sel(lat=slice(lats, latn), lon=slice(lonw, lone))
+    ds_tag = xr.open_dataset(first_file)
 
-        # !!!!! creat utils def land_sea_mask(ds_tag, mask=None): !!!!!
-        mask_reg = land_sea_mask(ds_tag_reg, mask_lndocn, **kwargs)
+    lats, latn, lonw, lone, ds_tag = coords_fmt(ds_tag, region, **kwargs)
 
-        # create 1D empty time series dataarray
-        empty_time = pd.date_range(
-            "1850-01-01", periods=0, freq="H"
-        )  # No initial time points
-        da_occur_ts = xr.DataArray(
-            np.empty((0,)), dims=["time"], coords={"time": empty_time}, name=fn_var
-        )
+    ds_tag_reg = ds_tag.sel(lat=slice(lats, latn), lon=slice(lonw, lone))
 
-        # create empty 2D dataarray
-        # tag_reg_2d = ds_tag_reg[fn_var].isel(time=0)
-        # count_reg_mp = xr.DataArray(np.empty(tag_reg_2d.shape), dims=tag_reg_2d.dims, coords=tag_reg_2d.coords)
+    # !!!!! creat utils def land_sea_mask(ds_tag, mask=None): !!!!!
+    mask_reg = land_sea_mask(ds_tag_reg, mask_lndocn, **kwargs)
 
-        nlat = ds_tag_reg.lat.size
-        nlon = ds_tag_reg.lon.size
+    # create 1D empty time series dataarray
+    empty_time = pd.date_range(
+        "1850-01-01", periods=0, freq="H"
+    )  # No initial time points
+    da_occur_ts = xr.DataArray(
+        np.empty((0,)), dims=["time"], coords={"time": empty_time}, name=fn_var
+    )
 
-        # consider to change it to da_reg_2d
-        count_reg_mp = xr.DataArray(
-            np.empty((nlat, nlon)),
-            dims=["lat", "lon"],
-            coords={"lat": ds_tag_reg.coords["lat"], "lon": ds_tag_reg.coords["lon"]},
-            name=fn_var,
-        )
+    # create empty 2D dataarray
+    # tag_reg_2d = ds_tag_reg[fn_var].isel(time=0)
+    # count_reg_mp = xr.DataArray(np.empty(tag_reg_2d.shape), dims=tag_reg_2d.dims, coords=tag_reg_2d.coords)
 
-        # create empty 3D dataarray
-        # consider to change it to da_reg_3d
-        tag_reg_mpts = xr.DataArray(
-            data=np.empty((0, ds_tag_reg.lat.size, ds_tag_reg.lon.size)),
-            dims=["time", "lat", "lon"],
-            coords={
-                "time": pd.date_range("1850-01-01", periods=0, freq="H"),
-                "lat": ds_tag_reg.coords["lat"],
-                "lon": ds_tag_reg.coords["lon"],
-            },
-            name=fn_var,
-        )
+    nlat = ds_tag_reg.lat.size
+    nlon = ds_tag_reg.lon.size
+
+    # consider to change it to da_reg_2d
+    count_reg_mp = xr.DataArray(
+        np.empty((nlat, nlon)),
+        dims=["lat", "lon"],
+        coords={"lat": ds_tag_reg.coords["lat"], "lon": ds_tag_reg.coords["lon"]},
+        name=fn_var,
+    )
+
+    # create empty 3D dataarray
+    # consider to change it to da_reg_3d
+    tag_reg_mpts = xr.DataArray(
+        data=np.empty((0, ds_tag_reg.lat.size, ds_tag_reg.lon.size)),
+        dims=["time", "lat", "lon"],
+        coords={
+            "time": pd.date_range("1850-01-01", periods=0, freq="H"),
+            "lat": ds_tag_reg.coords["lat"],
+            "lon": ds_tag_reg.coords["lon"],
+        },
+        name=fn_var,
+    )
 
     #        dims_to_keep = ['time','lat', 'lon']
     #        dims_to_drop = [dim for dim in ds_tag.dims if dim not in dims_to_keep]

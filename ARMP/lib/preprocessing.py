@@ -75,6 +75,7 @@ def data_QAQC_mf(
     # abs_fn_list = unpack_fn_list(fn_list, base_dir=None)
     # base_dir = Path(__file__).parent.parent
     abs_path_list = unpack_fn_list(fn_list, base_dir)
+    print("abs_path_list = ", abs_path_list)
 
     # ds_tag = xr.open_mfdataset(abs_fn_list, concat_dim="time", combine="nested", chunks={'time': 100})
     ds_tag = xr.open_mfdataset(abs_path_list, combine="by_coords", chunks={"time": 100})

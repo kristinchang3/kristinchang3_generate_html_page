@@ -26,7 +26,7 @@ def LFAR_count(
         # fn = os.path.join(fn_dir, fn)
 
         tag_reg_lf = data_QAQC(
-            fn.strip(), mask_reg, region, season, fn_var, start_date, end_date, **kwargs
+            fn, mask_reg, region, season, fn_var, start_date, end_date, **kwargs
         )
 
         if tag_reg_lf is None:

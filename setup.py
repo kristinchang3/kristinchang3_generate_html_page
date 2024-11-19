@@ -7,8 +7,9 @@ setup(
     package_data={
         "ARMP": [
             "params/config.in",
+            "doc/demo_data/*",
             "data/*.in",
-            ".keep",
+            "data/.keep",
             "output/.keep",
             "figure/.keep",
         ],

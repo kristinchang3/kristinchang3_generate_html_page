@@ -2,5 +2,6 @@ include ARMP/ARMP/data/.keep
 include ARMP/ARMP/output/.keep
 include ARMP/ARMP/figure/.keep
 include ARMP/params/config.in
+include ARMP/ARMP/doc/demo_data/*
 recursive-include ARMP *.in
 recursive-include ARMP *.txt

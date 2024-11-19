@@ -9,6 +9,8 @@ from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot
 
+# plotting template for Fig.4 and 6 in Dong et al. (2024)
+
 
 def extract_field_dict(dict_in, metric_layout, field_list):
     metric_dict_array = extract_dict(dict_in["RESULTS"], metric_layout, None)

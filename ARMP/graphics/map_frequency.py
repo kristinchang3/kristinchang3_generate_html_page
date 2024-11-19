@@ -17,6 +17,8 @@ from ARMP.utils.graphics_utils import minmax_range
 
 # ##import matplotlib.colors as mcolors
 
+# plotting template for Fig.3 in Dong et al. (2024)
+
 
 def map_frequency(dic, mp, mp_ref, model, model_ref, ARDT, region, season):
     #    ds_mp = mp.to_dataset()

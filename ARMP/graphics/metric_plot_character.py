@@ -8,6 +8,8 @@ from ARMP.lib.loader import dic
 from ARMP.utils.graphics_utils import minmax_range
 from ARMP.utils.portrait_plot import metric_plot
 
+# plotting template for Fig.9 in Dong et al. (2024)
+
 
 def metric_plot_character(
     matrix,

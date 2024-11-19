@@ -7,6 +7,8 @@ from ARMP.io.input import extract_dict, flatten_layout, read_json_file
 from ARMP.lib.loader import dic
 from ARMP.utils.portrait_plot import metric_plot
 
+# plotting template for Fig.13 in Dong et al. (2024)
+
 
 def metric_plot_bias(
     matrix, xaxis_labels, yaxis_labels, cbar_label, title, fig_filename, fig_dir

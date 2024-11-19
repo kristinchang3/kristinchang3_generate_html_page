@@ -16,7 +16,7 @@ def Clim_count(
 def Clim_count_mf(
     fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs
 ):
-    globals().update(**kwargs)
+    # globals().update(**kwargs)
 
     # clim_reg_lf = data_QAQC_mf(fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs)
     clim_reg_lf = data_QAQC_mf_xc(

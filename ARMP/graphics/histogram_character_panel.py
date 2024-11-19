@@ -9,6 +9,8 @@ from ARMP.io.printting import str_fn, str_print
 from ARMP.lib.convention import lon_swap
 from ARMP.lib.loader import dic
 
+# plotting template for Fig.5,7,8 in Dong et al. (2024)
+
 
 def plot_hist3_panel(
     data_obs,

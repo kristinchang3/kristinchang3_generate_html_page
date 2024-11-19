@@ -14,6 +14,7 @@ from ARMP.lib.control import iter_list, iter_list_ref, make_case  # noqa
 from ARMP.lib.convention import Case  # noqa
 from ARMP.lib.loader import dic  # noqa
 
+# plotting template for Fig.12 and Fig.14 in Dong et al. (2024)
 
 
 def histogram_peak_day(

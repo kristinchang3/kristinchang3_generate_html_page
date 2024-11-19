@@ -1,9 +1,8 @@
-from pathlib import Path
-
 import xarray as xr
 
 from ARMP.io.input import unpack_fn_list
 from ARMP.io.output import nc_out
+from ARMP.lib.loader import base_dir
 from ARMP.lib.preprocessing import data_QAQC, data_QAQC_mf, freq_convert
 from ARMP.lib.proc import init_ds
 
@@ -19,7 +18,7 @@ def LFAR_count(
     #    print("mask_reg = ", mask_reg) # mask_reg is None is mask_lndocn == None
 
     # with open(fn_list, "r") as f:
-    base_dir = Path(__file__).parent.parent
+    # base_dir = Path(__file__).parent.parent
     path_list = unpack_fn_list(fn_list, base_dir)
     for fn in path_list:
         # ---------------------------------------------

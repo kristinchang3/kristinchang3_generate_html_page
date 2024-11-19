@@ -1,3 +1,4 @@
+import importlib.resources
 import json
 import os
 from itertools import product
@@ -10,6 +11,17 @@ import xarray as xr
 def set_dir(folder):
     """
     set absolute directory path for a specific folder in ARMP
+    """
+    package = "ARMP"
+    base_dir = importlib.resources.files(package)
+    target_dir = (base_dir / folder).resolve()
+
+    return target_dir
+
+
+def make_dir(folder):
+    """
+    create absolute directory path for a new folder in ARMP
     """
     # Define the path for the 'data' directory as structured in ARMP
     data_dir = Path(__file__).parent.parent / folder

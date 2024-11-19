@@ -11,6 +11,8 @@ from ARMP.utils.portrait_plot import metric_plot
 
 #### import matplotlib.ticker.FormatStrFormatter as FormatStrFormatter
 
+# plotting template for Fig.2 in Dong et al. (2024)
+
 
 def metric_plot_correlation(
     matrix, xaxis_labels, yaxis_labels, cbar_label, title, fig_filename, fig_dir

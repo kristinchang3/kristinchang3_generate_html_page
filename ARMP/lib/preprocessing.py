@@ -1,10 +1,9 @@
-from pathlib import Path
-
 import numpy as np
 import xarray as xr
 import xcdat as xc
 
 from ARMP.io.input import unpack_fn_list
+from ARMP.lib.loader import base_dir
 from ARMP.lib.spatial import apply_mask, dim_select, region_select
 from ARMP.lib.temporal import season_select, time_select
 from ARMP.utils.adjust_units import adjust_units
@@ -74,7 +73,7 @@ def data_QAQC_mf(
     fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs
 ):
     # abs_fn_list = unpack_fn_list(fn_list, base_dir=None)
-    base_dir = Path(__file__).parent.parent
+    # base_dir = Path(__file__).parent.parent
     abs_path_list = unpack_fn_list(fn_list, base_dir)
 
     # ds_tag = xr.open_mfdataset(abs_fn_list, concat_dim="time", combine="nested", chunks={'time': 100})
@@ -107,7 +106,7 @@ def data_QAQC_mf(
 def data_QAQC_mf_xc(
     fn_list, region, season, fn_var, start_date, end_date, mask_lndocn, **kwargs
 ):
-    base_dir = Path(__file__).parent.parent
+    # base_dir = Path(__file__).parent.parent
     abs_path_list = unpack_fn_list(fn_list, base_dir)
 
     ds_tag = xc.open_mfdataset(abs_path_list, combine="by_coords", chunks={"time": 100})

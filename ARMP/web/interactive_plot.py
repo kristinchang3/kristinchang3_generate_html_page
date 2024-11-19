@@ -1,18 +1,13 @@
 import json
 import math
 import os
-from pathlib import Path
 
 import holoviews as hv
 import pandas as pd
 from bokeh.models import HoverTool, HTMLLabel
-from bokeh.palettes import RdBu, diverging_palette, interp_palette
-from bokeh.plotting import figure
-from matplotlib import pyplot as plt
-from PIL import Image
-from pylab import *
 
-from ARMP.io.input import extract_dict, flatten_layout, read_json_file
+from ARMP.io.input import extract_dict, flatten_layout, set_dir
+from ARMP.io.printting import str_fn
 
 hv.extension("bokeh")  # noqa
 
@@ -38,9 +33,10 @@ if __name__ == "__main__":
     season = season_list[0]
 
     # load metric data from metric json file
-    base_dir = base_dir = Path(__file__).parent.parent
+    # base_dir = Path(__file__).parent.parent
     web_data_dir = "doc/demo_data"
-    web_dir = (base_dir / path_obj).resolve()
+    # web_dir = (base_dir / web_data_dir).resolve()
+    web_dir = set_dir(web_data_dir)
 
     metric_layout = flatten_layout([model_list, ARDT_list, region_list, season_list])
     metric_var = "corr"
@@ -55,9 +51,9 @@ if __name__ == "__main__":
     metric_value = extract_dict(dict_in["RESULTS"], metric_layout, metric_var)
 
     # set web URL for data and image
-    # img_path = 'https://raw.githubusercontent.com/PCMDI/ARMP/main/ARMP/web/data'
-    # img_path = 'https://raw.githubusercontent.com/PCMDI/ARMP/main/ARMP/metrics/'
+    # img_path = 'https://raw.githubusercontent.com/PCMDI/ARMP/main/ARMP/doc/demo_data'
     img_path = "https://raw.githubusercontent.com/PCMDI/ARMP/main"
+    # img_path = "your URL to host the images"
 
     img_links = []
 

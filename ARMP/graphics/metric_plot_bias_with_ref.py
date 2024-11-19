@@ -8,6 +8,8 @@ from matplotlib.colors import ListedColormap
 from ARMP.io.input import extract_dict, flatten_layout, read_json_file
 from ARMP.lib.loader import dic
 
+# plotting template for Fig.10 and Fig.11 in Dong et al. (2024)
+
 
 def metrics_plot_bias_with_ref(
     matrix,

@@ -10,8 +10,9 @@ Please see the [Wiki](https://github.com/PCMDI/ARMP/wiki) tab of this GitHub rep
 
 * [Installation](https://github.com/PCMDI/ARMP/wiki/Installation)
 * [User manual](https://github.com/PCMDI/ARMP/wiki/User-Instructions)
-* [Demo Notebook](https://nbviewer.org/github/PCMDI/ARMP/blob/main/ARMP/doc/demo_AR_spatial_correlation_metrics.ipynb)
+* [Demo Notebook](https://nbviewer.org/github/PCMDI/ARMP/blob/main/ARMP/doc/demo_AR_peak_day_metrics.ipynb)
 * [Known issue](https://github.com/PCMDI/ARMP/wiki/Known-issues)
+
 
 ## Key Dependencies
 

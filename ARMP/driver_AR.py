@@ -7,6 +7,7 @@ from ARMP.app.ar_metrics_character_bias import AR_character_bias
 from ARMP.app.ar_metrics_spatial_correlation import AR_spatial_correlation
 from ARMP.app.plot_diagnostic import plot_diagnostic
 from ARMP.app.plot_metrics import plot_metrics
+from ARMP.io.printting import print_armp
 from ARMP.lib.loader import dic, setting
 
 # ##import ARMP
@@ -16,6 +17,7 @@ def run_ARMP(dic, setting, var_stats="freq", ref=False):
     """
     set ref=True if inclduing reference data in the diagnostic plot
     """
+    print_armp()
 
     # AR frequency/count analysis from tag files
     if not dic["restart"]:

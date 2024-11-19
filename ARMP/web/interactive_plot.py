@@ -1,6 +1,7 @@
 import json
 import math
 import os
+from pathlib import Path
 
 import holoviews as hv
 import hvplot.pandas
@@ -25,7 +26,6 @@ from bokeh.models import (
 from bokeh.palettes import RdBu, diverging_palette, interp_palette
 from bokeh.plotting import figure
 from matplotlib import pyplot as plt
-from pathlib import Path
 from PIL import Image
 from pylab import *
 

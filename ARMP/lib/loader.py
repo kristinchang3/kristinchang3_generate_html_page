@@ -18,18 +18,19 @@ from ARMP.lib.convention import Setting
 package = "ARMP"
 base_dir = importlib.resources.files(package)
 
-print("base_dir:", base_dir)
+#print("base_dir:", base_dir)
 
 # package_params = importlib.import_module(f'{package}.params')
 # config_file = importlib.resources.files(package_params) / "config.in"
 # config_file = config_file.resolve()
 
 config_file = set_dir("params/config.in")
+
 if os.path.exists(config_file):
     print("config_file:", config_file)
 else:
     print("config_file not found:", config_file)
-    config_file = os.path.join(base_dir, "ARMP/params/config.in")
+    config_file = os.path.join(base_dir, "params/config.in")
     print("config_file:", config_file)
     if os.path.exists(config_file):
         print("config_file found:", config_file)
@@ -72,7 +73,7 @@ dic = {
     and not callable(globals()[var])  # Exclude functions or callable objects
     # and not isinstance(globals()[var], type(os))
     # and isinstance(globals()[var], (str, int, float, bool, Path))
-    # and var not in globals().get("__builtins__", {})
+    and var not in globals().get("__builtins__", {})
     and var not in excluded_vars and var != "excluded_vars"
 }
 

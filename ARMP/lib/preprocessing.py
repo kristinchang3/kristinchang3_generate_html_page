@@ -23,7 +23,7 @@ def freq_convert(da, fn_freq, target_freq, **kwargs):
             # time_size = da_rsp.time.size
 
         else:
-            da_rsp = da.resample(time=target_freq).meam(dim="time")
+            da_rsp = da.resample(time=target_freq).mean(dim="time")
             # da_rsp = season_select(da_rsp, season, **kwargs)
             # time_size = da_rsp.time.size
 

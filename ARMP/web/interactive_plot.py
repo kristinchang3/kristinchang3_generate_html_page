@@ -166,6 +166,6 @@ if __name__ == "__main__":
     # change file name each time saving a new version
     # update index.md file to match new html file name
 
-    # hvplot.save(spatial_corr_plot, 'charts/spatial_corr_plot_01.html')
+    # hvplot.save(spatial_corr_plot, 'spatial_corr_plot_01.html')
 
     # push changes to github to see updates on live webpage

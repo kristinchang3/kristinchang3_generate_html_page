@@ -52,7 +52,7 @@ if __name__ == "__main__":
 
     # set web URL for data and image
     # img_path = 'https://raw.githubusercontent.com/PCMDI/ARMP/main/ARMP/doc/demo_data'
-    img_path = "https://raw.githubusercontent.com/PCMDI/ARMP/main"
+    img_path = "https://raw.githubusercontent.com/PCMDI/ARMP/refs/heads/main/ARMP/doc/demo_data/"
     # img_path = "your URL to host the images"
 
     img_links = []
